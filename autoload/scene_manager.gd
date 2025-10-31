@@ -5,7 +5,7 @@ const FADE_DURATION: float = 0.5
 var current_scene: SceneBase
 var viewport_container: SubViewportContainer
 var viewport: SubViewport
-var input_controller: InputController
+var input_controller: InputControllerAutoload
 var pause_menu: Control
 var last_increment_index: int = 0
 
@@ -13,8 +13,6 @@ signal scene_changed(new_scene: SceneBase)
 
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
-	input_controller = InputController.new()
-	add_child(input_controller)
 
 	viewport_container = SubViewportContainer.new()
 	viewport_container.set_visible(false)
@@ -79,7 +77,7 @@ func load_scene(scene_type: SceneMapping.SceneType) -> void:
 
 
 func handle_input_pause() -> void:
-	toggle_pause_game()
+#	toggle_pause_game()
 	print_debug('FlowController: handle_pause_input')
 
 

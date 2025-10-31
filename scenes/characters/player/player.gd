@@ -1,8 +1,41 @@
 extends CharacterBase
 
 
-const SPEED = 10.0
-const JUMP_VELOCITY = 4.5
+const SPEED: float = 10.0
+const ACCELERATION: float = 60.0
+
+const JUMP_VELOCITY: float = 4.5
+
+var input_controller: InputController = null
+var _physics_process_method: Callable = Callable(self, "_empty")
+
+func _empty(_delta):
+	pass
+
+func _ready():
+	super._ready()
+	input_controller = InputControllerAutoload
+	_physics_process_method = Callable(self, "_physics_process_implementation")
+	input_controller.OnJumpPressed.connect(_on_jump_pressed)
+
+func _on_jump_pressed():
+	if is_on_floor():
+		velocity.y = JUMP_VELOCITY
+
+
+func _physics_process_implementation(delta):
+	var direction: Vector3 = Vector3(
+		input_controller.movement_direction.x,
+		0,
+		input_controller.movement_direction.y
+	)
+
+	if direction != Vector3.ZERO:
+		velocity.x = move_toward(velocity.x, direction.x * SPEED, ACCELERATION * delta)
+		velocity.z = move_toward(velocity.z, direction.z * SPEED, ACCELERATION * delta)
+	else:
+		velocity.x = move_toward(velocity.x, 0, ACCELERATION * delta)
+		velocity.z = move_toward(velocity.z, 0, ACCELERATION * delta)
 
 
 func _physics_process(delta):
@@ -10,19 +43,7 @@ func _physics_process(delta):
 	if not is_on_floor():
 		velocity += get_gravity() * delta
 
-	# Handle jump.
-	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
-		velocity.y = JUMP_VELOCITY
+	_physics_process_method.call(delta)
 
-	# Get the input direction and handle the movement/deceleration.
-	# As good practice, you should replace UI actions with custom gameplay actions.
-	var input_dir = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
-	var direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
-	if direction:
-		velocity.x = direction.x * SPEED
-		velocity.z = direction.z * SPEED
-	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
-		velocity.z = move_toward(velocity.z, 0, SPEED)
 
 	move_and_slide()
