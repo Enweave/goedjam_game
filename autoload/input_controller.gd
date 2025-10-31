@@ -1,10 +1,12 @@
-﻿extends Node
+extends Node
 class_name InputController
 
-var movement_direction: Vector2 = Vector2.ZERO
+var movement_vector: Vector2 = Vector2.ZERO
 var aiming_direction: Vector2 = Vector2.ZERO
 
-var current_input_method: InputMethods = InputMethods.KeyboardMouse
+var current_input_method: InputMethods = InputMethods.KEYBOARD_AND_MOUSE
+
+signal OnModeChanged(new_mode: InputMethods)
 
 signal OnFirePressed
 signal OnFireReleased
@@ -14,8 +16,8 @@ signal OnJumpReleased
 
 
 enum InputMethods {
-	KeyboardMouse,
-	Gamepad
+	KEYBOARD_AND_MOUSE,
+	GAMEPAD
 }
 
 enum InputActions {
@@ -55,6 +57,7 @@ var input_actions: Dictionary = {
 
 func _switch_input_method(to_method: InputMethods) -> void:
 	current_input_method = to_method
+	OnModeChanged.emit(current_input_method)
 
 
 func normalize_and_clamp_vector2(vec: Vector2) -> Vector2:
@@ -64,7 +67,7 @@ func normalize_and_clamp_vector2(vec: Vector2) -> Vector2:
 
 func _process(_delta: float) -> void:
 
-	movement_direction = normalize_and_clamp_vector2(Vector2(
+	movement_vector = normalize_and_clamp_vector2(Vector2(
 		Input.get_axis(input_actions[InputActions.MoveLeft], input_actions[InputActions.MoveRight]),
 		Input.get_axis(input_actions[InputActions.MoveUp], input_actions[InputActions.MoveDown])
 	))
@@ -89,11 +92,11 @@ func _process(_delta: float) -> void:
 
 func _unhandled_input(event):
 	if event is InputEventKey:
-		_switch_input_method(InputMethods.KeyboardMouse)
+		_switch_input_method(InputMethods.KEYBOARD_AND_MOUSE)
 		if event.is_action_pressed(input_actions[InputActions.Pause]):
 			SceneManagerAutoload.handle_input_pause()
 
 	if event is InputEventJoypadButton:
-		_switch_input_method(InputMethods.Gamepad)
+		_switch_input_method(InputMethods.GAMEPAD)
 		if event.is_action_pressed(input_actions[InputActions.Pause]):
 			SceneManagerAutoload.handle_input_pause()

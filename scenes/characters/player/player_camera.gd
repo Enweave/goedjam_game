@@ -6,7 +6,7 @@ var MAX_TARGET_DISTANCE: float = 2.0
 @export_range(0.0, 1.0, 0.01) var shake_intensity: float = 0.25
 @export_range(0.01, 3.0, 0.01) var shake_duration: float = 0.5
 
-@onready var camera: Camera3D = %Camera3D
+@onready var camera: Camera3D = %PlayerCamera
 
 var is_shaking: bool = false
 var rng = RandomNumberGenerator.new()
