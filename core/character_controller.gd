@@ -1,4 +1,4 @@
-﻿extends Node
+﻿extends Node3D
 class_name CharacterController
 
 var movement_vector: Vector2 = Vector2.ZERO

@@ -5,12 +5,12 @@ class_name Player
 
 @onready var player_camera: Node3D = %PlayerCamera
 
-
 func _ready():
 	character_controller = PlayerControllerAutoload
 	character_controller.OnControlModeChanged.connect(_on_control_mode_changed)
 	_on_control_mode_changed(character_controller.current_control_method)
 	super._ready()
+	PlayerStateAutoload.set_current_player_character(self)
 
 
 func _on_control_mode_changed(new_mode: PlayerController.ControlMethods):

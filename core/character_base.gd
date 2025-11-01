@@ -53,6 +53,10 @@ func get_acceleration() -> float:
 
 
 func _ready() -> void:
+	if character_controller == null:
+		print_debug("CharacterBase: character_controller is not assigned!")
+		return
+
 	_wordlspace = get_world_3d().get_direct_space_state()
 	_calculate_movement_stats()
 	set_movement_enabled(true)
