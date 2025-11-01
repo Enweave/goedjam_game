@@ -14,6 +14,10 @@ enum InputActions {
 	Fire
 }
 
+func _ready() -> void:
+	super._ready()
+	process_mode = Node.PROCESS_MODE_ALWAYS
+
 
 var input_actions: Dictionary = {
 	InputActions.Pause: "input_Pause",

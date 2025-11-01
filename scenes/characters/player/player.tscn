@@ -1,13 +1,24 @@
-[gd_scene load_steps=7 format=3 uid="uid://p6r7g7l6bfnd"]
+[gd_scene load_steps=10 format=3 uid="uid://p6r7g7l6bfnd"]
 
 [ext_resource type="Script" uid="uid://bmea3fk2bgbmf" path="res://scenes/characters/player/player.gd" id="1_7uws0"]
 [ext_resource type="PackedScene" uid="uid://dudqxy6dbjysm" path="res://scenes/characters/common/character_collision_shape_3d.tscn" id="2_hss88"]
 [ext_resource type="Script" uid="uid://v1gk7drsywnj" path="res://scenes/characters/player/player_camera.gd" id="2_t61fv"]
 [ext_resource type="Script" uid="uid://xjyowidksewx" path="res://core/combat/health_component.gd" id="3_686vu"]
+[ext_resource type="Shader" uid="uid://b0dbp348r00xt" path="res://shaders/crt.gdshader" id="4_qd3e3"]
+[ext_resource type="Script" uid="uid://xowne7ibxicv" path="res://scenes/characters/player/camera_color_rect.gd" id="5_6avc5"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_rp718"]
 
 [sub_resource type="PrismMesh" id="PrismMesh_yewv4"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6avc5"]
+resource_local_to_scene = true
+shader = ExtResource("4_qd3e3")
+shader_parameter/mask_type = 1
+shader_parameter/curve = 0.0
+shader_parameter/color_offset = 0.13900003035249997
+shader_parameter/mask_brightness = 1.0
+shader_parameter/aspect = 0.75
 
 [node name="Player" type="CharacterBody3D"]
 script = ExtResource("1_7uws0")
@@ -37,6 +48,18 @@ transform = Transform3D(1, 0, 0, 0, 0.34202012, 0.9396925, 0, -0.9396925, 0.3420
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 25)
 fov = 30.0
+
+[node name="CanvasLayer" type="CanvasLayer" parent="CameraRoot/CameraPivot/PlayerCamera"]
+
+[node name="ColorRect" type="ColorRect" parent="CameraRoot/CameraPivot/PlayerCamera/CanvasLayer"]
+material = SubResource("ShaderMaterial_6avc5")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+script = ExtResource("5_6avc5")
 
 [node name="HealthComponent" type="Node" parent="."]
 script = ExtResource("3_686vu")

@@ -11,7 +11,6 @@ sky_material = SubResource("ProceduralSkyMaterial_yp2xm")
 background_mode = 2
 sky = SubResource("Sky_uyl1e")
 ambient_light_source = 3
-fog_enabled = true
 fog_mode = 1
 fog_density = 1.0
 
