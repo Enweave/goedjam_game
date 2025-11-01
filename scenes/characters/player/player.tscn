@@ -16,9 +16,14 @@ resource_local_to_scene = true
 shader = ExtResource("4_qd3e3")
 shader_parameter/mask_type = 1
 shader_parameter/curve = 0.0
-shader_parameter/color_offset = 0.13900003035249997
+shader_parameter/color_offset = 0.0
+shader_parameter/chromatic_aberration_intensity = 0.006000000285
 shader_parameter/mask_brightness = 1.0
 shader_parameter/aspect = 0.75
+shader_parameter/vignette_amount = 0.914000043415
+shader_parameter/vignette_radius = 0.8070000383325
+shader_parameter/vignette_softness = 0.35
+shader_parameter/vignette_color = Vector3(0, 0.001, 0.006)
 
 [node name="Player" type="CharacterBody3D"]
 script = ExtResource("1_7uws0")

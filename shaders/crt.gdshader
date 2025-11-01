@@ -37,6 +37,11 @@ uniform float curve : hint_range(0.0, 0.5) = 0.0;
 uniform float color_offset : hint_range(-0.5, 0.5) = 0.0;
 
 /**
+	Strength of the chromatic aberration effect.
+	*/
+uniform float chromatic_aberration_intensity : hint_range(0.0, 0.1) = 0.005;
+
+/**
 	Reduce to preserve phosphor mask details in highlights at the cost of
 	overall brightness. This should usually be kept at or near 1
 	*/
@@ -48,6 +53,18 @@ uniform float mask_brightness : hint_range(0, 1) = 1.0;
 	For 16:9, this should be 0.5625.
 	*/
 uniform float aspect : hint_range(0.5, 1.0) = 0.75;
+
+/**
+    Vignette controls
+    amount: 0 disables; 1 is full strength.
+    radius: distance from center where vignette reaches full strength.
+    softness: width of the falloff edge.
+    color: tint to blend towards (black by default).
+*/
+uniform float vignette_amount : hint_range(0.0, 1.0) = 0.5;
+uniform float vignette_radius : hint_range(0.0, 1.5) = 0.85;
+uniform float vignette_softness : hint_range(0.0, 1.0) = 0.35;
+uniform vec3 vignette_color  = vec3(0.0, 0.0, 0.0);
 
 vec2 warp(vec2 uv, float _aspect, float _curve)
 {
@@ -245,10 +262,30 @@ void fragment()
 	vec2 warped_coords = warp(UV, aspect, curve);
 
 	// Sample color
-	vec3 col = sample(warped_coords);
+	vec3 col;
+	float ca_offset = chromatic_aberration_intensity * length(warped_coords - 0.5);
+	col.r = sample(warped_coords + vec2(ca_offset, 0.0)).r;
+	col.g = sample(warped_coords).g;
+	col.b = sample(warped_coords - vec2(ca_offset, 0.0)).b;
 
 	// Apply phosphor mask
 	col = apply_mask(col, FRAGCOORD.xy);
+
+	// Apply vignette in linear space
+	if (vignette_amount > 0.0) {
+		vec2 p = warped_coords - 0.5;
+		// Aspect-correct so the vignette is circular
+		p.x /= aspect;
+		float dist = length(p);
+
+		float start = max(vignette_radius - vignette_softness, 0.0);
+		float end = vignette_radius;
+		float v = smoothstep(start, end, dist);
+
+		// Target color we blend towards near the edges
+		vec3 edge_col = mix(col, vignette_color, vignette_amount);
+		col = mix(col, edge_col, v);
+	}
 
 	// Convert back to srgb
 	col = linear_to_srgb(col);
