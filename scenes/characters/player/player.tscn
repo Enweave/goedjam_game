@@ -1,10 +1,9 @@
 [gd_scene load_steps=7 format=3 uid="uid://p6r7g7l6bfnd"]
 
 [ext_resource type="Script" uid="uid://bmea3fk2bgbmf" path="res://scenes/characters/player/player.gd" id="1_7uws0"]
+[ext_resource type="PackedScene" uid="uid://dudqxy6dbjysm" path="res://scenes/characters/common/character_collision_shape_3d.tscn" id="2_hss88"]
 [ext_resource type="Script" uid="uid://v1gk7drsywnj" path="res://scenes/characters/player/player_camera.gd" id="2_t61fv"]
 [ext_resource type="Script" uid="uid://xjyowidksewx" path="res://core/combat/health_component.gd" id="3_686vu"]
-
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_rp718"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_rp718"]
 
@@ -14,8 +13,7 @@
 script = ExtResource("1_7uws0")
 metadata/_custom_type_script = "uid://cky7a4jh04rat"
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-shape = SubResource("CapsuleShape3D_rp718")
+[node name="CollisionShape3D" parent="." instance=ExtResource("2_hss88")]
 
 [node name="BodyRoot" type="Node3D" parent="."]
 unique_name_in_owner = true
@@ -33,11 +31,12 @@ top_level = true
 script = ExtResource("2_t61fv")
 
 [node name="CameraPivot" type="Node3D" parent="CameraRoot"]
-transform = Transform3D(1, 0, 0, 0, 0.25881904, 0.96592575, 0, -0.96592575, 0.25881904, 0, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 0.34202012, 0.9396925, 0, -0.9396925, 0.34202012, 0, 0, 0)
 
 [node name="PlayerCamera" type="Camera3D" parent="CameraRoot/CameraPivot"]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 10)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 25)
+fov = 30.0
 
 [node name="HealthComponent" type="Node" parent="."]
 script = ExtResource("3_686vu")

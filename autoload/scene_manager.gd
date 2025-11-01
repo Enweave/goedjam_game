@@ -27,7 +27,7 @@ func _ready() -> void:
 	viewport.audio_listener_enable_2d = true
 	viewport.audio_listener_enable_3d = true
 	viewport.handle_input_locally = true
-#	viewport.canvas_item_default_texture_filter = 0 # DEFAULT_CANVAS_ITEM_TEXTURE_FILTER_NEAREST
+	viewport.canvas_item_default_texture_filter = 0 # DEFAULT_CANVAS_ITEM_TEXTURE_FILTER_NEAREST
 
 	get_tree().create_timer(0.3).timeout.connect(_on_ready_timeout)
 

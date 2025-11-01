@@ -1,10 +1,9 @@
 [gd_scene load_steps=8 format=3 uid="uid://ccrydembdkcm"]
 
-[ext_resource type="Script" uid="uid://q0xpdnen5hge" path="res://scenes/characters/enemies/enemy_base.gd" id="1_d48rl"]
+[ext_resource type="Script" uid="uid://q0xpdnen5hge" path="res://scenes/characters/common/enemy_base.gd" id="1_d48rl"]
 [ext_resource type="Script" uid="uid://xjyowidksewx" path="res://core/combat/health_component.gd" id="2_qyrn1"]
-[ext_resource type="Script" uid="uid://s7b4gwpsxxwk" path="res://scenes/characters/enemies/ai_controller.gd" id="3_uo6so"]
-
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_qyrn1"]
+[ext_resource type="PackedScene" uid="uid://dudqxy6dbjysm" path="res://scenes/characters/common/character_collision_shape_3d.tscn" id="2_ye1k2"]
+[ext_resource type="Script" uid="uid://s7b4gwpsxxwk" path="res://scenes/characters/common/ai_controller.gd" id="3_uo6so"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_qyrn1"]
 
@@ -18,8 +17,7 @@ script = ExtResource("1_d48rl")
 health_component = NodePath("HealthComponent")
 metadata/_custom_type_script = "uid://d38vogc71un30"
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-shape = SubResource("CapsuleShape3D_qyrn1")
+[node name="CollisionShape3D" parent="." instance=ExtResource("2_ye1k2")]
 
 [node name="HealthComponent" type="Node" parent="."]
 script = ExtResource("2_qyrn1")
@@ -29,17 +27,20 @@ metadata/_custom_type_script = "uid://xjyowidksewx"
 unique_name_in_owner = true
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="BodyRoot"]
+visible = false
 mesh = SubResource("CapsuleMesh_qyrn1")
 skeleton = NodePath("../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_qyrn1")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="BodyRoot/MeshInstance3D"]
 transform = Transform3D(-0.6259614, 8.742278e-08, -1.842766e-15, 0, -4.3711385e-08, -0.48222634, -5.4723287e-08, -1, 2.1078785e-08, 0, 0.7886064, -0.26001358)
+visible = false
 mesh = SubResource("PrismMesh_uo6so")
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
 avoidance_enabled = true
-debug_enabled = true
+radius = 1.0
+use_3d_avoidance = true
 
 [node name="AIController" type="Node3D" parent="." node_paths=PackedStringArray("nav_agent")]
 script = ExtResource("3_uo6so")
