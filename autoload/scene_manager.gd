@@ -5,11 +5,11 @@ const FADE_DURATION: float = 0.5
 var current_scene: SceneBase
 var viewport_container: SubViewportContainer
 var viewport: SubViewport
-var input_controller: InputControllerAutoload
 var pause_menu: Control
 var last_increment_index: int = 0
 
 signal scene_changed(new_scene: SceneBase)
+
 
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
@@ -25,8 +25,9 @@ func _ready() -> void:
 	var viewport_size: Vector2 = Vector2(ProjectSettings.get_setting("display/window/size/viewport_width"), ProjectSettings.get_setting("display/window/size/viewport_height"))
 	viewport.size = viewport_size
 	viewport.audio_listener_enable_2d = true
+	viewport.audio_listener_enable_3d = true
 	viewport.handle_input_locally = true
-	viewport.canvas_item_default_texture_filter = 0 # DEFAULT_CANVAS_ITEM_TEXTURE_FILTER_NEAREST 
+#	viewport.canvas_item_default_texture_filter = 0 # DEFAULT_CANVAS_ITEM_TEXTURE_FILTER_NEAREST
 
 	get_tree().create_timer(0.3).timeout.connect(_on_ready_timeout)
 
@@ -77,16 +78,13 @@ func load_scene(scene_type: SceneMapping.SceneType) -> void:
 
 
 func handle_input_pause() -> void:
-#	toggle_pause_game()
+	toggle_pause_game()
 	print_debug('FlowController: handle_pause_input')
 
 
-func handle_input_next() -> void:
-	print_debug('FlowController: handle_next_input')
-
 
 func pause_game(pause: bool):
-	pause_menu.visible = pause
+	# pause_menu.visible = pause
 	if pause:
 		get_tree().paused = true
 	else:

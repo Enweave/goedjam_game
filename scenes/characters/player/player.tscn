@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://p6r7g7l6bfnd"]
+[gd_scene load_steps=7 format=3 uid="uid://p6r7g7l6bfnd"]
 
 [ext_resource type="Script" uid="uid://bmea3fk2bgbmf" path="res://scenes/characters/player/player.gd" id="1_7uws0"]
 [ext_resource type="Script" uid="uid://v1gk7drsywnj" path="res://scenes/characters/player/player_camera.gd" id="2_t61fv"]
+[ext_resource type="Script" uid="uid://xjyowidksewx" path="res://core/combat/health_component.gd" id="3_686vu"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_rp718"]
 
@@ -37,3 +38,7 @@ transform = Transform3D(1, 0, 0, 0, 0.25881904, 0.96592575, 0, -0.96592575, 0.25
 [node name="PlayerCamera" type="Camera3D" parent="CameraRoot/CameraPivot"]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 10)
+
+[node name="HealthComponent" type="Node" parent="."]
+script = ExtResource("3_686vu")
+metadata/_custom_type_script = "uid://xjyowidksewx"
