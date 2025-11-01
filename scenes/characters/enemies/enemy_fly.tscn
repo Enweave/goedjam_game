@@ -131,7 +131,7 @@ script = ExtResource("5_d6hip")
 
 [node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="EnemySpriteHandle"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.11452093, 0)
-billboard = 2
+billboard = 1
 texture_filter = 0
 sprite_frames = SubResource("SpriteFrames_g7lmu")
 animation = &"death"
