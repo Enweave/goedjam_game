@@ -28,13 +28,9 @@ uniform int mask_type : hint_enum(
 	"Slot Mask:5",
 	"Null:0") = 1;
 
-uniform float curve : hint_range(0.0, 0.5) = 0.0;
+uniform float mask_scale : hint_range(1.0, 8.0) = 1.0;
 
-/**
-	Use to offset color channels from each other.
-	Make sure to increase this at least a little because it's a cool effect
-	*/
-uniform float color_offset : hint_range(-0.5, 0.5) = 0.0;
+uniform float curve : hint_range(0.0, 0.5) = 0.0;
 
 /**
 	Strength of the chromatic aberration effect.
@@ -147,8 +143,6 @@ vec3 sample(vec2 uv)
 
 	// The x coordinates of electron beam offsets
 	vec3 beam = vec3(uv.x - 0.5);
-	beam.r -= color_offset;
-	beam.b += color_offset;
 
 	// Calculate weights
 	vec3 weight_a = smoothstep(1, 0, (beam - ax));
@@ -269,7 +263,7 @@ void fragment()
 	col.b = sample(warped_coords - vec2(ca_offset, 0.0)).b;
 
 	// Apply phosphor mask
-	col = apply_mask(col, FRAGCOORD.xy);
+	col = apply_mask(col, FRAGCOORD.xy / mask_scale);
 
 	// Apply vignette in linear space
 	if (vignette_amount > 0.0) {
