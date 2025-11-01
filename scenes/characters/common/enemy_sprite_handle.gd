@@ -27,7 +27,7 @@ func _ready() -> void:
 		push_error("EnemySpriteHandle requires an AnimatedSprite3D child node.")
 		return
 
-	sprite.billboard = BaseMaterial3D.BILLBOARD_ENABLED
+#	sprite.billboard = BaseMaterial3D.BILLBOARD_ENABLED
 	sprite.play(ANIMATION_NAMES[AnimationState.MOVE])
 
 
