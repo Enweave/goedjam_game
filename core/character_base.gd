@@ -5,7 +5,7 @@ var character_controller: CharacterController = null
 var _physics_process_method: Callable = Callable(self, "_empty")
 var _aim_update_method: Callable = Callable(self, "_empty")
 var _wordlspace: PhysicsDirectSpaceState3D
-var _aim_direction: Quaternion
+var _aim_direction_quaternion: Quaternion
 
 @onready var body_root: Node3D = %BodyRoot
 @export_category("movement")
@@ -83,17 +83,16 @@ func _aim_update_to_controller_target(delta):
 	var _hit_position: Vector3 = character_controller.current_target_position
 	_hit_position.y = body_root.global_position.y
 	var _direction: Vector3 = body_root.global_transform.origin.direction_to(_hit_position)
-	_aim_direction = Quaternion(Vector3.FORWARD, _direction)
-	body_root.set_quaternion(_aim_direction)
+	_aim_direction_quaternion = Quaternion(Vector3.FORWARD, _direction)
+	body_root.set_quaternion(_aim_direction_quaternion)
 
 
 func _aim_update_to_controller_aim_direction(delta):
-	var aim_direction: Vector2 = character_controller.aiming_direction
-	if aim_direction == Vector2.ZERO:
+	if character_controller.aiming_direction == Vector2.ZERO:
 		return
 
 	body_root.look_at(
-		body_root.global_position + Vector3(aim_direction.x, 0, aim_direction.y),
+		body_root.global_position + Vector3(character_controller.aiming_direction.x, 0, character_controller.aiming_direction.y),
 		Vector3.UP
 	)
 

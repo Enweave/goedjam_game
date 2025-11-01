@@ -35,6 +35,10 @@ func _update_controller_aim_rotation_from_mouse():
 
 	if hit_result:
 		character_controller.current_target_position = hit_result.position
+		character_controller.aiming_direction = Vector2(
+			hit_result.position.x - body_root.global_position.x,
+			hit_result.position.z - body_root.global_position.z
+		).normalized()
 
 
 func _aim_update_from_mouse(delta):

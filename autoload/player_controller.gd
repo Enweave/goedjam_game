@@ -41,18 +41,21 @@ func _process(_delta: float) -> void:
 		Input.get_axis(input_actions[InputActions.MoveUp], input_actions[InputActions.MoveDown])
 	))
 
-	aiming_direction = normalize_and_clamp_vector2(Vector2(
-		Input.get_axis(input_actions[InputActions.AimLeft], input_actions[InputActions.AimRight]),
-		Input.get_axis(input_actions[InputActions.AimUp], input_actions[InputActions.AimDown])
-	))
-
-
 	if Input.is_action_just_pressed(input_actions[InputActions.Fire]):
 		OnFeatureActivated.emit()
 
 	if Input.is_action_just_released(input_actions[InputActions.Fire]):
 		OnFeatureDeactivated.emit()
-		
+
+
+	if current_control_method == ControlMethods.KEYBOARD_AND_MOUSE:
+		return
+
+	aiming_direction = normalize_and_clamp_vector2(Vector2(
+		Input.get_axis(input_actions[InputActions.AimLeft], input_actions[InputActions.AimRight]),
+		Input.get_axis(input_actions[InputActions.AimUp], input_actions[InputActions.AimDown])
+	))
+
 
 func _unhandled_input(event):
 	if event is InputEventKey:
