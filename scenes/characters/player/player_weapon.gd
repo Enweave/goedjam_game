@@ -42,8 +42,8 @@ func _ready() -> void:
 	player_controller.OnFeatureActivated.connect(fire)
 	player_controller.OnFeatureDeactivated.connect(deactivate)
 
-	self.CooldownPassed.connect(_on_cooldown_passed)
-	self.Activation.connect(_on_activation)
+	self.OnCooldownPassed.connect(_on_cooldown_passed)
+	self.OnActivation.connect(_on_activation)
 
 
 func _on_cooldown_passed():
@@ -75,7 +75,7 @@ func _fire() -> void:
 
 		var to: Vector3 = origin + dir * weapon_range
 
-		var query := PhysicsRayQueryParameters3D.create(origin, to, 0b00000000_00000000_00000000_00000001)
+		var query : PhysicsRayQueryParameters3D = PhysicsRayQueryParameters3D.create(origin, to, Constants.COLLISION_MASK_PRESET)
 		query.collide_with_bodies = true
 		query.collide_with_areas = true
 
@@ -97,9 +97,8 @@ func _fire() -> void:
 
 		if hit.size() > 0:
 			var body = hit.get("collider")
-			if HealthComponent.FIELD_NAME in body:
-				var health_component: HealthComponent = body[HealthComponent.FIELD_NAME]
-				health_component.damage(damage)
+			WeaponBase.damage_character(body, damage)
+
 
 
 func fire() -> void:

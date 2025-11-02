@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://ccbrqaw7h8342"]
+
+[ext_resource type="Script" uid="uid://udj4iqyqo4vl" path="res://core/combat/melee_weapon.gd" id="1_uak47"]
+
+[node name="MeleeWeapon" type="Node3D"]
+script = ExtResource("1_uak47")
+
+[node name="SensorArea" type="Area3D" parent="."]
+unique_name_in_owner = true
+collision_layer = 0

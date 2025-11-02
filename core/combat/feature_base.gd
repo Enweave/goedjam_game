@@ -13,9 +13,9 @@ var _trigger_down: bool    = false
 var _locked: bool          = false
 @export var sfx_player: RandomSFXPlayer = null
 
-signal Windup
-signal Activation
-signal CooldownPassed
+signal OnWindup
+signal OnActivation
+signal OnCooldownPassed
 
 var _target_direction: Vector3 = Vector3.ZERO
 var _target_position: Vector3  = Vector3.ZERO
@@ -65,7 +65,7 @@ func unlock(in_emit: bool = true) -> void:
 	_locked = false
 	if _cooldown_timer.is_stopped():
 		if in_emit:
-			CooldownPassed.emit()
+			OnCooldownPassed.emit()
 		_active = false
 		_trigger_down = false
 
@@ -132,13 +132,13 @@ func _activate() -> void:
 		return
 	if _wind_up_time > 0:
 		_wind_up_timer.start()
-		Windup.emit()
+		OnWindup.emit()
 	else:
 		_on_wind_up_timer_timeout()
 
 
 func _on_wind_up_timer_timeout() -> void:
-	Activation.emit()
+	OnActivation.emit()
 	if sfx_player != null:
 		sfx_player.play_random_sound()
 	if _cooldown_time > 0:
@@ -148,7 +148,7 @@ func _on_wind_up_timer_timeout() -> void:
 
 
 func _on_cooldown_timer_timeout() -> void:
-	CooldownPassed.emit()
+	OnCooldownPassed.emit()
 
 	if _locked:
 		_active = false

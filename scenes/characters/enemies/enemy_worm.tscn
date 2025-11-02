@@ -1,10 +1,11 @@
-[gd_scene load_steps=23 format=3 uid="uid://d1ovxarhjxn4q"]
+[gd_scene load_steps=24 format=3 uid="uid://d1ovxarhjxn4q"]
 
 [ext_resource type="Script" uid="uid://q0xpdnen5hge" path="res://scenes/characters/common/enemy_base.gd" id="1_hkjxk"]
 [ext_resource type="PackedScene" uid="uid://dudqxy6dbjysm" path="res://scenes/characters/common/character_collision_shape_3d.tscn" id="2_e55e8"]
 [ext_resource type="Script" uid="uid://xjyowidksewx" path="res://core/combat/health_component.gd" id="3_kruco"]
-[ext_resource type="Script" uid="uid://s7b4gwpsxxwk" path="res://scenes/characters/common/ai_controller.gd" id="4_1bqbp"]
+[ext_resource type="PackedScene" uid="uid://ccbrqaw7h8342" path="res://scenes/characters/common/melee_weapon.tscn" id="4_e55e8"]
 [ext_resource type="Script" uid="uid://htts4jxy8uka" path="res://scenes/characters/common/enemy_sprite_handle.gd" id="5_ce5of"]
+[ext_resource type="Script" uid="uid://cldh7nhnubd00" path="res://scenes/characters/common/melee_ai_controller.gd" id="5_e55e8"]
 [ext_resource type="Texture2D" uid="uid://yr1e7t2sypbq" path="res://assets/sprites/enemy_worm.png" id="6_hkjxk"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_qyrn1"]
@@ -114,6 +115,7 @@ animations = [{
 [node name="EnemyBase" type="CharacterBody3D" node_paths=PackedStringArray("health_component")]
 script = ExtResource("1_hkjxk")
 health_component = NodePath("HealthComponent")
+BASE_MOVEMENT_SPEED = 5.0
 metadata/_custom_type_script = "uid://d38vogc71un30"
 
 [node name="CollisionShape3D" parent="." instance=ExtResource("2_e55e8")]
@@ -121,6 +123,12 @@ metadata/_custom_type_script = "uid://d38vogc71un30"
 [node name="HealthComponent" type="Node" parent="."]
 script = ExtResource("3_kruco")
 metadata/_custom_type_script = "uid://xjyowidksewx"
+
+[node name="AIController" type="Node3D" parent="." node_paths=PackedStringArray("weapon", "nav_agent")]
+script = ExtResource("5_e55e8")
+weapon = NodePath("../BodyRoot/MeleeWeapon")
+nav_agent = NodePath("../NavigationAgent3D")
+metadata/_custom_type_script = "uid://s7b4gwpsxxwk"
 
 [node name="BodyRoot" type="Node3D" parent="."]
 unique_name_in_owner = true
@@ -136,15 +144,12 @@ transform = Transform3D(-0.625961, 8.74228e-08, -1.84277e-15, 0, -4.37114e-08, -
 visible = false
 mesh = SubResource("PrismMesh_uo6so")
 
+[node name="MeleeWeapon" parent="BodyRoot" instance=ExtResource("4_e55e8")]
+
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
 avoidance_enabled = true
 radius = 1.0
 use_3d_avoidance = true
-
-[node name="AIController" type="Node3D" parent="." node_paths=PackedStringArray("nav_agent")]
-script = ExtResource("4_1bqbp")
-nav_agent = NodePath("../NavigationAgent3D")
-metadata/_custom_type_script = "uid://s7b4gwpsxxwk"
 
 [node name="EnemySpriteHandle" type="Node3D" parent="."]
 transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0)

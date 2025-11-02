@@ -20,3 +20,10 @@ func _ready():
 		cooldown_time,
 		full_auto
 	)
+
+
+static func damage_character(in_character: Node, in_damage: float) -> void:
+	if in_character != null:
+		if HealthComponent.FIELD_NAME in in_character:
+			var health_component: HealthComponent = in_character[HealthComponent.FIELD_NAME]
+			health_component.damage(in_damage)
