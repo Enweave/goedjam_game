@@ -1,7 +1,17 @@
-[gd_scene load_steps=3 format=3 uid="uid://cadcjjrms0h8v"]
+[gd_scene load_steps=6 format=3 uid="uid://cadcjjrms0h8v"]
 
 [ext_resource type="Script" uid="uid://dqgmxlxdr33ur" path="res://scenes/UI/ingame_ui.gd" id="1_rjfv6"]
 [ext_resource type="PackedScene" uid="uid://br1lhlfgu6fcq" path="res://scenes/UI/bullet_widget.tscn" id="2_nlibn"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nlibn"]
+bg_color = Color(0.160784, 0.160784, 0.160784, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_oxrmg"]
+bg_color = Color(0.403922, 0.627451, 0.317647, 1)
+
+[sub_resource type="Theme" id="Theme_0lrgu"]
+ProgressBar/styles/background = SubResource("StyleBoxFlat_nlibn")
+ProgressBar/styles/fill = SubResource("StyleBoxFlat_oxrmg")
 
 [node name="IngameUi" type="Control"]
 layout_mode = 3
@@ -26,31 +36,41 @@ theme_override_constants/margin_bottom = 10
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
 layout_mode = 2
-alignment = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
-alignment = 1
 
-[node name="AmmoContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="Health" type="ProgressBar" parent="MarginContainer/VBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(100, 14)
+layout_mode = 2
+size_flags_horizontal = 0
+theme = SubResource("Theme_0lrgu")
+value = 76.88
+show_percentage = false
+
+[node name="AmmoContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_constants/separation = -3
 
-[node name="TextureRect" parent="MarginContainer/VBoxContainer/HBoxContainer/AmmoContainer" instance=ExtResource("2_nlibn")]
+[node name="TextureRect" parent="MarginContainer/VBoxContainer/VBoxContainer/AmmoContainer" instance=ExtResource("2_nlibn")]
 layout_mode = 2
 
-[node name="TextureRect2" parent="MarginContainer/VBoxContainer/HBoxContainer/AmmoContainer" instance=ExtResource("2_nlibn")]
+[node name="TextureRect2" parent="MarginContainer/VBoxContainer/VBoxContainer/AmmoContainer" instance=ExtResource("2_nlibn")]
 layout_mode = 2
 
-[node name="TextureRect3" parent="MarginContainer/VBoxContainer/HBoxContainer/AmmoContainer" instance=ExtResource("2_nlibn")]
+[node name="TextureRect3" parent="MarginContainer/VBoxContainer/VBoxContainer/AmmoContainer" instance=ExtResource("2_nlibn")]
 layout_mode = 2
 
-[node name="TextureRect4" parent="MarginContainer/VBoxContainer/HBoxContainer/AmmoContainer" instance=ExtResource("2_nlibn")]
+[node name="TextureRect4" parent="MarginContainer/VBoxContainer/VBoxContainer/AmmoContainer" instance=ExtResource("2_nlibn")]
 layout_mode = 2
 
-[node name="TextureRect5" parent="MarginContainer/VBoxContainer/HBoxContainer/AmmoContainer" instance=ExtResource("2_nlibn")]
+[node name="TextureRect5" parent="MarginContainer/VBoxContainer/VBoxContainer/AmmoContainer" instance=ExtResource("2_nlibn")]
 layout_mode = 2
 
-[node name="TextureRect6" parent="MarginContainer/VBoxContainer/HBoxContainer/AmmoContainer" instance=ExtResource("2_nlibn")]
+[node name="TextureRect6" parent="MarginContainer/VBoxContainer/VBoxContainer/AmmoContainer" instance=ExtResource("2_nlibn")]
+layout_mode = 2
+
+[node name="TextureRect7" parent="MarginContainer/VBoxContainer/VBoxContainer/AmmoContainer" instance=ExtResource("2_nlibn")]
 layout_mode = 2

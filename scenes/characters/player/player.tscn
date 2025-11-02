@@ -545,6 +545,7 @@ fov = 30.0
 
 [node name="HealthComponent" type="Node" parent="."]
 script = ExtResource("3_686vu")
+BASE_HEALTH_REGEN_RATE = 0.0
 metadata/_custom_type_script = "uid://xjyowidksewx"
 
 [node name="PlayerSpriteHandle" type="Node3D" parent="."]

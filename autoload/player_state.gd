@@ -13,6 +13,10 @@ func notify_from_weapon(in_weapon: PlayerWeapon) -> void:
 	if ingame_ui != null:
 		ingame_ui.update_weapon_display(in_weapon)
 
+func notify_from_health_component(in_health_component: HealthComponent) -> void:
+	if ingame_ui != null:
+		ingame_ui.update_health_display(in_health_component)
+
 
 func set_current_player_character(player_character: Player) -> void:
 	current_player_character = player_character

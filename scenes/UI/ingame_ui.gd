@@ -5,6 +5,7 @@ class_name IngameUI
 
 
 @onready var bullet_container: HBoxContainer = %AmmoContainer
+@onready var health_widget: ProgressBar = %Health
 var bullet_widget_scene: PackedScene = preload("res://scenes/UI/bullet_widget.tscn")
 
 
@@ -12,6 +13,11 @@ var _magazine_size: int = 0
 
 func _ready() -> void:
 	PlayerStateAutoload.set_ingame_ui(self)
+
+
+func update_health_display(in_health_component: HealthComponent) -> void:
+	health_widget.value = in_health_component.current_health / in_health_component.current_max_health * 100.0
+	health_widget.custom_minimum_size.x = in_health_component.current_max_health * 10
 
 
 func _update_magazine_size(in_size: int) -> void:
