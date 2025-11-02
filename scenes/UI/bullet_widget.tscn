@@ -1,0 +1,14 @@
+[gd_scene load_steps=4 format=3 uid="uid://br1lhlfgu6fcq"]
+
+[ext_resource type="Texture2D" uid="uid://2ut08btrsyno" path="res://assets/sprites/shotgunshell1.png" id="1_mocjl"]
+[ext_resource type="Script" uid="uid://5r1xq7cblxpq" path="res://scenes/UI/bullet_widget.gd" id="2_5uwbj"]
+[ext_resource type="Texture2D" uid="uid://dl7owkr1nu1hp" path="res://assets/sprites/shotgunshell2.png" id="3_373bv"]
+
+[node name="TextureRect" type="TextureRect"]
+custom_minimum_size = Vector2(10.005, 14)
+texture = ExtResource("1_mocjl")
+expand_mode = 1
+stretch_mode = 6
+script = ExtResource("2_5uwbj")
+bullet_icon = ExtResource("1_mocjl")
+bullet_spent_icon = ExtResource("3_373bv")

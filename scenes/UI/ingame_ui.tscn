@@ -1,0 +1,56 @@
+[gd_scene load_steps=3 format=3 uid="uid://cadcjjrms0h8v"]
+
+[ext_resource type="Script" uid="uid://dqgmxlxdr33ur" path="res://scenes/UI/ingame_ui.gd" id="1_rjfv6"]
+[ext_resource type="PackedScene" uid="uid://br1lhlfgu6fcq" path="res://scenes/UI/bullet_widget.tscn" id="2_nlibn"]
+
+[node name="IngameUi" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_rjfv6")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+alignment = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="AmmoContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = -3
+
+[node name="TextureRect" parent="MarginContainer/VBoxContainer/HBoxContainer/AmmoContainer" instance=ExtResource("2_nlibn")]
+layout_mode = 2
+
+[node name="TextureRect2" parent="MarginContainer/VBoxContainer/HBoxContainer/AmmoContainer" instance=ExtResource("2_nlibn")]
+layout_mode = 2
+
+[node name="TextureRect3" parent="MarginContainer/VBoxContainer/HBoxContainer/AmmoContainer" instance=ExtResource("2_nlibn")]
+layout_mode = 2
+
+[node name="TextureRect4" parent="MarginContainer/VBoxContainer/HBoxContainer/AmmoContainer" instance=ExtResource("2_nlibn")]
+layout_mode = 2
+
+[node name="TextureRect5" parent="MarginContainer/VBoxContainer/HBoxContainer/AmmoContainer" instance=ExtResource("2_nlibn")]
+layout_mode = 2
+
+[node name="TextureRect6" parent="MarginContainer/VBoxContainer/HBoxContainer/AmmoContainer" instance=ExtResource("2_nlibn")]
+layout_mode = 2

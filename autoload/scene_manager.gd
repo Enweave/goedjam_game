@@ -8,6 +8,9 @@ var viewport: SubViewport
 var pause_menu: Control
 var last_increment_index: int = 0
 
+var ingame_ui_scene: PackedScene = preload("res://Scenes/UI/ingame_ui.tscn")
+var ingame_ui: IngameUI
+
 signal scene_changed(new_scene: SceneBase)
 
 var shader_material :ShaderMaterial
@@ -51,6 +54,12 @@ func _ready() -> void:
 #	pause_menu.visible = false
 #
 #	await get_tree().get_root().call_deferred("add_child", pause_menu)
+
+	ingame_ui = ingame_ui_scene.instantiate()
+	ingame_ui.z_index = 100
+	ingame_ui.process_mode = Node.PROCESS_MODE_ALWAYS
+	await get_tree().get_root().call_deferred("add_child", ingame_ui)
+
 
 func _on_viewport_size_changed() -> void:
 	shader_material.set_shader_parameter("tex", viewport.get_texture())

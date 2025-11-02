@@ -11,19 +11,12 @@ class_name PlayerWeapon
 @export var spread_angle_degrees: float = 2.0
 @export var weapon_range: float = 300.0
 
-
 var current_ammo: int = magazine_size
 var reload_time: float = 1.0
 var _is_reloading: bool = true
 var _reload_timer: Timer
 
 var player_controller: PlayerController = null
-
-signal ReloadStarted
-signal ReloadFinished
-signal AmmoChanged
-signal GunUpgraded
-
 
 var TracerScene : PackedScene
 var scene_manager: SceneManager = SceneManagerAutoload
@@ -45,6 +38,8 @@ func _ready() -> void:
 	self.OnCooldownPassed.connect(_on_cooldown_passed)
 	self.OnActivation.connect(_on_activation)
 
+	PlayerStateAutoload.notify_from_weapon(self)
+
 
 func _on_cooldown_passed():
 	if current_ammo <= 0:
@@ -54,10 +49,10 @@ func _on_activation():
 	current_ammo -= 1
 	_fire()
 	player_weapon_sprite_handle.fire()
-	AmmoChanged.emit()
 
 
 func _fire() -> void:
+	PlayerStateAutoload.notify_from_weapon(self)
 	var origin: Vector3 = global_position
 	var space_state := get_world_3d().direct_space_state
 	var half_spread: float = deg_to_rad(spread_angle_degrees) * 0.5
@@ -116,12 +111,10 @@ func fire() -> void:
 
 func set_number_of_projectiles_per_shot(count: int) -> void:
 	number_of_projectiles_per_shot = count
-	GunUpgraded.emit()
 
 
 func set_magazine_size(size: int) -> void:
 	magazine_size = size
-	AmmoChanged.emit()
 	if current_ammo > magazine_size:
 		current_ammo = magazine_size
 
@@ -130,11 +123,11 @@ func reload() -> void:
 	if _is_reloading:
 		return
 	lock()
+	PlayerStateAutoload.notify_from_weapon(self)
 	if reload_sfx_player != null:
 		reload_sfx_player.play_random_sfx()
 	player_weapon_sprite_handle.reload()
 	_is_reloading = true
-	ReloadStarted.emit()
 	_reload_timer.start()
 
 
@@ -142,5 +135,5 @@ func _on_reload_timer_timeout() -> void:
 	current_ammo = magazine_size
 	_is_reloading = false
 	unlock()
+	PlayerStateAutoload.notify_from_weapon(self)
 	player_weapon_sprite_handle.idle()
-	ReloadFinished.emit()
