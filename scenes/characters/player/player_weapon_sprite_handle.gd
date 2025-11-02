@@ -7,6 +7,10 @@ var sprite: AnimatedSprite3D
 var character: CharacterWithHealth
 var _initial_transform_location: Vector3
 
+@onready var hotspot: Node3D = %HotSpot
+@onready var hotspot_inv: Node3D = %HotSpotInv
+var _inverted_sprite: bool = false
+
 const DIRECTION_SUFFIX : String = "_back"
 
 enum AnimationState {
@@ -56,6 +60,12 @@ func reload():
 	sprite.play(ANIMATION_NAMES[AnimationState.RELOAD])
 
 
+func get_hotspot_position() -> Vector3:
+	if _inverted_sprite:
+		return hotspot_inv.global_transform.origin
+	else:
+		return hotspot.global_transform.origin
+
 func _process(_delta: float) -> void:
 	if character == null or sprite == null:
 		return
@@ -63,8 +73,10 @@ func _process(_delta: float) -> void:
 	var _vec: Vector3 = Vector3.RIGHT
 
 	if character.character_controller.aiming_direction.x > 0:
+		_inverted_sprite = false
 		sprite.flip_h = false
 	elif character.character_controller.aiming_direction.x < 0:
+		_inverted_sprite = true
 		sprite.flip_h = true
 		_vec = Vector3.LEFT
 

@@ -67,6 +67,10 @@ func set_current_scene(in_scene: SceneBase) -> void:
 	scene_changed.emit(current_scene)
 
 
+func get_current_scene() -> SceneBase:
+	return current_scene
+
+
 func load_scene(scene_type: SceneMapping.SceneType) -> void:
 	var scene_path: String = SceneMapping.get_scene_path(scene_type)
 	if scene_path == "":

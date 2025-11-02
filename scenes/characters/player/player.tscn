@@ -472,13 +472,14 @@ metadata/_custom_type_script = "uid://cky7a4jh04rat"
 unique_name_in_owner = true
 
 [node name="PlayerWeapon" type="Node3D" parent="BodyRoot" node_paths=PackedStringArray("player_weapon_sprite_handle")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.962381)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.428589)
 script = ExtResource("3_djydg")
 player_weapon_sprite_handle = NodePath("../../WeaponSpriteHandle")
-number_of_projectiles_per_shot = 3
+number_of_projectiles_per_shot = 6
 spread_angle_degrees = 6.0
 windup_time = 0.0
 cooldown_time = 0.2
+full_auto = true
 metadata/_custom_type_script = "uid://k7y7m3lyep1h"
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="BodyRoot"]
@@ -531,8 +532,17 @@ script = ExtResource("10_djydg")
 
 [node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="WeaponSpriteHandle"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.199859)
+flip_h = true
 axis = 1
 texture_filter = 0
 sprite_frames = SubResource("SpriteFrames_kl5g2")
 animation = &"reload"
 autoplay = "default"
+
+[node name="HotSpot" type="Node3D" parent="WeaponSpriteHandle"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.181104, 0, 0)
+
+[node name="HotSpotInv" type="Node3D" parent="WeaponSpriteHandle"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.180751, 0, 0)

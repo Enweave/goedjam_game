@@ -25,8 +25,12 @@ signal AmmoChanged
 signal GunUpgraded
 
 
+var TracerScene : PackedScene
+var scene_manager: SceneManager = SceneManagerAutoload
+
 func _ready() -> void:
 	super._ready()
+	TracerScene = preload("res://scenes/visuals/tracer.tscn")
 	player_controller = PlayerControllerAutoload
 	_reload_timer = Timer.new()
 	_reload_timer.wait_time = reload_time
@@ -54,13 +58,10 @@ func _on_activation():
 
 
 func _fire() -> void:
-	# for number_of_projectiles_per_shot make raycats with with random spread within spread_angle_degrees
-	# use weapon_range for the length of the raycast
 	var origin: Vector3 = global_position
 	var space_state := get_world_3d().direct_space_state
 	var half_spread: float = deg_to_rad(spread_angle_degrees) * 0.5
 
-	# Forward direction of this node (-Z in Godot)
 	var base_dir: Vector3 = -global_transform.basis.z
 	var up: Vector3 = global_transform.basis.y
 	var right: Vector3 = global_transform.basis.x
@@ -69,7 +70,6 @@ func _fire() -> void:
 		var yaw_offset: float = randf_range(-half_spread, half_spread)
 		var pitch_offset: float = randf_range(-half_spread, half_spread)
 
-		# Rotate base_dir by yaw (around up) and pitch (around right)
 		var rot := Basis(up, yaw_offset) * Basis(right, pitch_offset)
 		var dir: Vector3 = (rot * base_dir).normalized()
 
@@ -84,6 +84,16 @@ func _fire() -> void:
 		query.exclude = exclude
 
 		var hit := space_state.intersect_ray(query)
+
+		var tracer_to: Vector3 = to
+		if hit.size() > 0:
+			tracer_to = hit.get("position")
+
+		var tracer: Tracer = TracerScene.instantiate()
+		var from: Vector3 = player_weapon_sprite_handle.get_hotspot_position()
+		if tracer and tracer.has_method("init"):
+			tracer.init(from, tracer_to)
+			scene_manager.get_current_scene().add_child(tracer)
 
 		if hit.size() > 0:
 			var body = hit.get("collider")

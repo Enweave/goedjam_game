@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://cekckwqfu7ky3"]
+
+[ext_resource type="Script" uid="uid://0tdnkpwsjxi5" path="res://scenes/visuals/tracer.gd" id="1_5a36t"]
+
+[node name="Tracer" type="Node3D"]
+script = ExtResource("1_5a36t")
+metadata/_custom_type_script = "uid://0tdnkpwsjxi5"
+
+[node name="Beam" type="MeshInstance3D" parent="."]
+unique_name_in_owner = true
