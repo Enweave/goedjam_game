@@ -70,7 +70,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"death",
-"speed": 5.0
+"speed": 11.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -134,7 +134,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.114521, 0)
 billboard = 1
 texture_filter = 0
 sprite_frames = SubResource("SpriteFrames_g7lmu")
-animation = &"death"
 autoplay = "default"
 
 [node name="ShadowCaster" type="CSGSphere3D" parent="EnemySpriteHandle"]

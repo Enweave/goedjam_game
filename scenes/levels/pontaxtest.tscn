@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://6c6j7f3b6d72"]
+[gd_scene load_steps=21 format=3 uid="uid://6c6j7f3b6d72"]
 
 [ext_resource type="Script" uid="uid://chgi8s5jhb48u" path="res://core/scene_management/scene_base.gd" id="1_gcoij"]
 [ext_resource type="PackedScene" uid="uid://p6r7g7l6bfnd" path="res://scenes/characters/player/player.tscn" id="2_boavh"]
@@ -14,6 +14,8 @@
 [ext_resource type="PackedScene" uid="uid://cc4051hguf1nf" path="res://assets/tileset/houseobjects/bookshelf_03.gltf" id="10_8rm55"]
 [ext_resource type="PackedScene" uid="uid://bhiu3d6vgudep" path="res://assets/tileset/houseobjects/bookshelf_04.gltf" id="11_igt22"]
 [ext_resource type="PackedScene" uid="uid://bj3cideqilo0j" path="res://assets/tileset/houseobjects/cupboard_3.gltf" id="12_5nswn"]
+[ext_resource type="PackedScene" uid="uid://dcdt31u5wcw81" path="res://scenes/characters/enemies/enemy_orb.tscn" id="15_8rm55"]
+[ext_resource type="PackedScene" uid="uid://d18l8pwphmxtp" path="res://scenes/characters/enemies/enemy_eyebat.tscn" id="16_igt22"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_52kye"]
 size = Vector2(20, 20)
@@ -161,3 +163,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.25979, 4.08253, -0.564299)
 
 [node name="EnemyBase3" parent="." instance=ExtResource("7_bdh1i")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.19082, 3.05073, -4.07143)
+
+[node name="EnemyBase4" parent="." instance=ExtResource("15_8rm55")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.10361, 4.80617, -10.936)
+
+[node name="EnemyBase5" parent="." instance=ExtResource("16_igt22")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.9361, 5.58252, -12.7019)

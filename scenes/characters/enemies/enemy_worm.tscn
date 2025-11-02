@@ -108,7 +108,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"default",
-"speed": 8.0
+"speed": 9.0
 }]
 
 [node name="EnemyBase" type="CharacterBody3D" node_paths=PackedStringArray("health_component")]
@@ -155,10 +155,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.114521, 0)
 billboard = 1
 texture_filter = 0
 sprite_frames = SubResource("SpriteFrames_2dhmu")
-animation = &"death"
 autoplay = "default"
-frame = 7
-frame_progress = 1.0
+frame_progress = 0.59141
 
 [node name="ShadowCaster" type="CSGSphere3D" parent="EnemySpriteHandle"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.138763, 0.0946793)

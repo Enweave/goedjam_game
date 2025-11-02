@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cl01ngcxymfo2"
-path.s3tc="res://.godot/imported/eyebat_sheet.png-f05b1264d95e97349bda04d0c456dc94.s3tc.ctex"
+uid="uid://bpj743acr0o1a"
+path.s3tc="res://.godot/imported/eyebat.png-4cf4bf3dd3908a84939d3bed72a33baa.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://assets/sprites/eyebat_sheet.png"
-dest_files=["res://.godot/imported/eyebat_sheet.png-f05b1264d95e97349bda04d0c456dc94.s3tc.ctex"]
+source_file="res://assets/sprites/eyebat.png"
+dest_files=["res://.godot/imported/eyebat.png-4cf4bf3dd3908a84939d3bed72a33baa.s3tc.ctex"]
 
 [params]
 

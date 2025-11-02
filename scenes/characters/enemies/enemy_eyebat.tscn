@@ -5,7 +5,7 @@
 [ext_resource type="Script" uid="uid://xjyowidksewx" path="res://core/combat/health_component.gd" id="3_q76en"]
 [ext_resource type="Script" uid="uid://s7b4gwpsxxwk" path="res://scenes/characters/common/ai_controller.gd" id="4_gqcph"]
 [ext_resource type="Script" uid="uid://htts4jxy8uka" path="res://scenes/characters/common/enemy_sprite_handle.gd" id="5_bwqbr"]
-[ext_resource type="Texture2D" uid="uid://cl01ngcxymfo2" path="res://assets/sprites/eyebat_sheet.png" id="6_6rl7b"]
+[ext_resource type="Texture2D" uid="uid://bpj743acr0o1a" path="res://assets/sprites/eyebat.png" id="6_6rl7b"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_qyrn1"]
 
@@ -165,11 +165,12 @@ transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0)
 script = ExtResource("5_bwqbr")
 
 [node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="EnemySpriteHandle"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.114521, 0)
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, -0.114521, 0)
 billboard = 1
 texture_filter = 0
 sprite_frames = SubResource("SpriteFrames_2dhmu")
 autoplay = "default"
+frame_progress = 0.586386
 
 [node name="ShadowCaster" type="CSGSphere3D" parent="EnemySpriteHandle"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.138763, 0.0946793)
