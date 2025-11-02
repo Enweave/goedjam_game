@@ -14,6 +14,7 @@ func _ready() -> void:
 func _on_death() -> void:
 	if _death_queued:
 		return
+	character_controller.process_mode = Node.PROCESS_MODE_DISABLED
 	_death_queued = true
 	set_movement_enabled(false)
 	get_tree().create_timer(DEATH_TIMEOUT_SECONDS).timeout.connect(queue_free)

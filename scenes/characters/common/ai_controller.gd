@@ -6,6 +6,8 @@ class_name AIController
 var TRACKING_INTERVAL: float = 0.1
 
 @export var nav_agent: NavigationAgent3D
+@export var sprite_hanlde: EnemySpriteHandle
+
 var player_state: PlayerState
 
 func _ready() -> void:

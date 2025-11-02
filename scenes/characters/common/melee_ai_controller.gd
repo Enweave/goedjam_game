@@ -18,6 +18,8 @@ func _ready() -> void:
 func _on_weapon_target_in_range_changed() -> void:
 	if weapon.target_in_range:
 		weapon.activate()
+		if sprite_hanlde:
+			sprite_hanlde.do_melee_attack_animation()
 	else:
 		weapon.deactivate()
 

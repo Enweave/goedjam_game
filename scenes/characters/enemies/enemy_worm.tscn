@@ -124,10 +124,11 @@ metadata/_custom_type_script = "uid://d38vogc71un30"
 script = ExtResource("3_kruco")
 metadata/_custom_type_script = "uid://xjyowidksewx"
 
-[node name="AIController" type="Node3D" parent="." node_paths=PackedStringArray("weapon", "nav_agent")]
+[node name="AIController" type="Node3D" parent="." node_paths=PackedStringArray("weapon", "nav_agent", "sprite_hanlde")]
 script = ExtResource("5_e55e8")
 weapon = NodePath("../BodyRoot/MeleeWeapon")
 nav_agent = NodePath("../NavigationAgent3D")
+sprite_hanlde = NodePath("../EnemySpriteHandle")
 metadata/_custom_type_script = "uid://s7b4gwpsxxwk"
 
 [node name="BodyRoot" type="Node3D" parent="."]

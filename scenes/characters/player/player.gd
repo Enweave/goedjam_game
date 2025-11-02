@@ -4,13 +4,25 @@ extends CharacterWithHealth
 class_name Player
 
 @onready var player_camera: Node3D = %PlayerCamera
+@onready var invulnerability_time: float = 0.6
+var _invulnerability_timer: Timer
+
+signal InvulnerabilityEnded
 
 func _ready():
 	character_controller = PlayerControllerAutoload
 	character_controller.OnControlModeChanged.connect(_on_control_mode_changed)
 	_on_control_mode_changed(character_controller.current_control_method)
 	super._ready()
+
+	_invulnerability_timer = Timer.new()
+	_invulnerability_timer.wait_time = invulnerability_time
+	_invulnerability_timer.one_shot = true
+	_invulnerability_timer.timeout.connect(_end_invulnerability)
+	add_child(_invulnerability_timer)
+
 	PlayerStateAutoload.set_current_player_character(self)
+	health_component.OnDamage.connect(_on_player_damage)
 
 
 func _on_control_mode_changed(new_mode: PlayerController.ControlMethods):
@@ -39,6 +51,16 @@ func _update_controller_aim_rotation_from_mouse():
 			hit_result.position.x - body_root.global_position.x,
 			hit_result.position.z - body_root.global_position.z
 		).normalized()
+
+
+func _on_player_damage(_amount: float) -> void:
+	health_component.is_invulnerable = true
+	_invulnerability_timer.start()
+
+
+func _end_invulnerability() -> void:
+	InvulnerabilityEnded.emit()
+	health_component.is_invulnerable = false
 
 
 func _aim_update_from_mouse(delta):

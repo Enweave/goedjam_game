@@ -1,8 +1,8 @@
 extends Node3D
 
 var sprite: AnimatedSprite3D
-var character: CharacterWithHealth
-
+var character: Player
+var anim_player: AnimationPlayer
 
 const DIRECTION_SUFFIX : String = "_back"
 
@@ -38,10 +38,20 @@ func _ready() -> void:
 		push_error("EnemySpriteHandle must be a child of a CharacterWithHealth node.")
 		return
 
+
 	var health_component: HealthComponent = character.health_component
 	if health_component:
 		health_component.OnDeath.connect(_on_character_death)
 
+		anim_player = self.get_node_or_null("AnimationPlayer")
+		if anim_player:
+			health_component.OnDamage.connect(func (_amount: float) -> void:
+				anim_player.play("default")
+			)
+
+			character.InvulnerabilityEnded.connect(func () -> void:
+				anim_player.play("RESET")
+			)
 
 func _add_suffix() -> String:
 	if character.character_controller.aiming_direction.y < 0:
