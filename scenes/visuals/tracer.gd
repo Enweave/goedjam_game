@@ -3,8 +3,8 @@ extends Node3D
 
 class_name Tracer
 
-@export var lifetime: float = 0.15
-@export var start_width: float = 0.05
+@export var lifetime: float = 0.2
+@export var start_width: float = 0.08
 @export var color: Color = Color(1, 0.9, 0.6, 1.0)
 
 
@@ -30,15 +30,13 @@ func _ready() -> void:
 	if abs(dir.dot(up)) > 0.999:
 		up = Vector3.RIGHT
 
-	# Make this node face along -Z towards the target
 	look_at(_in_origin + dir, up)
 
-	# Create a thin box mesh scaled to the tracer length
-	var box := BoxMesh.new()
-	box.size = Vector3(start_width, start_width, length)
-	beam.mesh = box
+	var quad := QuadMesh.new()
+	quad.size = Vector2(start_width, length)
+	quad.orientation = 1
+	beam.mesh = quad
 
-	# Set a simple unshaded material we can fade out
 	var mat := StandardMaterial3D.new()
 	mat.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
 	mat.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
@@ -47,7 +45,6 @@ func _ready() -> void:
 	mat.emission = color
 	beam.material_override = mat
 
-	# Offset the beam so it starts at the origin and extends forward along -Z
 	beam.transform.origin = Vector3(0, 0, -length * 0.5)
 	beam.scale = Vector3(1, 1, 1)
 
