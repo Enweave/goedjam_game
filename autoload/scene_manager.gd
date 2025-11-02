@@ -8,7 +8,7 @@ var viewport: SubViewport
 var pause_menu: Control
 var last_increment_index: int = 0
 
-var ingame_ui_scene: PackedScene = preload("res://Scenes/UI/ingame_ui.tscn")
+var ingame_ui_scene: PackedScene = preload("res://scenes/UI/ingame_ui.tscn")
 var ingame_ui: IngameUI
 
 signal scene_changed(new_scene: SceneBase)
