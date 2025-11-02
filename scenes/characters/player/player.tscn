@@ -1,12 +1,10 @@
-[gd_scene load_steps=74 format=3 uid="uid://p6r7g7l6bfnd"]
+[gd_scene load_steps=71 format=3 uid="uid://p6r7g7l6bfnd"]
 
 [ext_resource type="Script" uid="uid://bmea3fk2bgbmf" path="res://scenes/characters/player/player.gd" id="1_7uws0"]
 [ext_resource type="PackedScene" uid="uid://dudqxy6dbjysm" path="res://scenes/characters/common/character_collision_shape_3d.tscn" id="2_hss88"]
 [ext_resource type="Script" uid="uid://v1gk7drsywnj" path="res://scenes/characters/player/player_camera.gd" id="2_t61fv"]
 [ext_resource type="Script" uid="uid://xjyowidksewx" path="res://core/combat/health_component.gd" id="3_686vu"]
 [ext_resource type="Script" uid="uid://k7y7m3lyep1h" path="res://scenes/characters/player/player_weapon.gd" id="3_djydg"]
-[ext_resource type="Shader" uid="uid://b0dbp348r00xt" path="res://shaders/crt.gdshader" id="4_qd3e3"]
-[ext_resource type="Script" uid="uid://xowne7ibxicv" path="res://scenes/characters/player/camera_color_rect.gd" id="5_6avc5"]
 [ext_resource type="Script" uid="uid://bj3nikt4pi5k4" path="res://scenes/characters/player/player_sprite_handle.gd" id="7_xuses"]
 [ext_resource type="Texture2D" uid="uid://crvj1xykr2htu" path="res://assets/sprites/player_sheet.png" id="8_xuses"]
 [ext_resource type="Texture2D" uid="uid://dby35jovote8y" path="res://assets/sprites/shotgun_sheet.png" id="9_42irl"]
@@ -15,20 +13,6 @@
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_rp718"]
 
 [sub_resource type="PrismMesh" id="PrismMesh_yewv4"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_6avc5"]
-resource_local_to_scene = true
-shader = ExtResource("4_qd3e3")
-shader_parameter/mask_type = 1
-shader_parameter/mask_scale = 1.0
-shader_parameter/curve = 0.0
-shader_parameter/chromatic_aberration_intensity = 0.005
-shader_parameter/mask_brightness = 1.0
-shader_parameter/aspect = 0.75
-shader_parameter/vignette_amount = 0.914000043415
-shader_parameter/vignette_radius = 0.8070000383325
-shader_parameter/vignette_softness = 0.35
-shader_parameter/vignette_color = Vector3(0, 0.001, 0.006)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_42irl"]
 atlas = ExtResource("8_xuses")
@@ -488,7 +472,7 @@ metadata/_custom_type_script = "uid://cky7a4jh04rat"
 unique_name_in_owner = true
 
 [node name="PlayerWeapon" type="Node3D" parent="BodyRoot" node_paths=PackedStringArray("player_weapon_sprite_handle")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.96238124)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.962381)
 script = ExtResource("3_djydg")
 player_weapon_sprite_handle = NodePath("../../WeaponSpriteHandle")
 number_of_projectiles_per_shot = 3
@@ -503,7 +487,7 @@ mesh = SubResource("CapsuleMesh_rp718")
 skeleton = NodePath("../..")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="BodyRoot/MeshInstance3D"]
-transform = Transform3D(-0.6259614, 8.742278e-08, -1.842766e-15, 0, -4.3711385e-08, -0.48222634, -5.4723287e-08, -1, 2.1078785e-08, 0, 0.7886064, -0.26001358)
+transform = Transform3D(-0.625961, 8.74228e-08, -1.84277e-15, 0, -4.37114e-08, -0.482226, -5.47233e-08, -1, 2.10788e-08, 0, 0.788606, -0.260014)
 visible = false
 mesh = SubResource("PrismMesh_yewv4")
 
@@ -512,24 +496,12 @@ top_level = true
 script = ExtResource("2_t61fv")
 
 [node name="CameraPivot" type="Node3D" parent="CameraRoot"]
-transform = Transform3D(1, 0, 0, 0, 0.34202012, 0.9396925, 0, -0.9396925, 0.34202012, 0, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 0.34202, 0.939692, 0, -0.939692, 0.34202, 0, 0, 0)
 
 [node name="PlayerCamera" type="Camera3D" parent="CameraRoot/CameraPivot"]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 25)
 fov = 30.0
-
-[node name="CanvasLayer" type="CanvasLayer" parent="CameraRoot/CameraPivot/PlayerCamera"]
-
-[node name="ColorRect" type="ColorRect" parent="CameraRoot/CameraPivot/PlayerCamera/CanvasLayer"]
-material = SubResource("ShaderMaterial_6avc5")
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0, 0, 0, 1)
-script = ExtResource("5_6avc5")
 
 [node name="HealthComponent" type="Node" parent="."]
 script = ExtResource("3_686vu")
@@ -547,7 +519,7 @@ animation = &"stand"
 autoplay = "stand"
 
 [node name="ShadowCaster" type="CSGSphere3D" parent="PlayerSpriteHandle"]
-transform = Transform3D(1.69, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.15870973, 0.1788163)
+transform = Transform3D(1.69, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.15871, 0.178816)
 cast_shadow = 3
 radius = 0.05
 radial_segments = 20
@@ -558,7 +530,7 @@ transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0.471, 0.815)
 script = ExtResource("10_djydg")
 
 [node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="WeaponSpriteHandle"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.19985916)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.199859)
 axis = 1
 texture_filter = 0
 sprite_frames = SubResource("SpriteFrames_kl5g2")

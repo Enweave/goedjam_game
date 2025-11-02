@@ -10,7 +10,7 @@
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_qyrn1"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qyrn1"]
-albedo_color = Color(1, 0.19607843, 0, 1)
+albedo_color = Color(1, 0.196078, 0, 1)
 
 [sub_resource type="PrismMesh" id="PrismMesh_uo6so"]
 
@@ -132,7 +132,7 @@ skeleton = NodePath("../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_qyrn1")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="BodyRoot/MeshInstance3D"]
-transform = Transform3D(-0.6259614, 8.742278e-08, -1.842766e-15, 0, -4.3711385e-08, -0.48222634, -5.4723287e-08, -1, 2.1078785e-08, 0, 0.7886064, -0.26001358)
+transform = Transform3D(-0.625961, 8.74228e-08, -1.84277e-15, 0, -4.37114e-08, -0.482226, -5.47233e-08, -1, 2.10788e-08, 0, 0.788606, -0.260014)
 visible = false
 mesh = SubResource("PrismMesh_uo6so")
 
@@ -151,7 +151,7 @@ transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0)
 script = ExtResource("5_ce5of")
 
 [node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="EnemySpriteHandle"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.11452093, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.114521, 0)
 billboard = 1
 texture_filter = 0
 sprite_frames = SubResource("SpriteFrames_2dhmu")
@@ -161,7 +161,7 @@ frame = 7
 frame_progress = 1.0
 
 [node name="ShadowCaster" type="CSGSphere3D" parent="EnemySpriteHandle"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.13876262, 0.09467925)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.138763, 0.0946793)
 cast_shadow = 3
 radius = 0.05
 radial_segments = 20

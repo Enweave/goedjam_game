@@ -10,9 +10,11 @@ var last_increment_index: int = 0
 
 signal scene_changed(new_scene: SceneBase)
 
+var shader_material :ShaderMaterial
 
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
+
 
 	viewport_container = SubViewportContainer.new()
 	viewport_container.set_visible(false)
@@ -29,8 +31,19 @@ func _ready() -> void:
 	viewport.handle_input_locally = true
 	viewport.canvas_item_default_texture_filter = Viewport.DEFAULT_CANVAS_ITEM_TEXTURE_FILTER_NEAREST
 
-	get_tree().create_timer(0.3).timeout.connect(_on_ready_timeout)
+	shader_material = ShaderMaterial.new()
+	shader_material.shader = load("res://shaders/crt.gdshader")
+	viewport_container.material = shader_material
+	viewport.render_target_update_mode = SubViewport.UPDATE_ALWAYS
+	shader_material.set_shader_parameter("tex", viewport.get_texture())
+	shader_material.set_shader_parameter("chromatic_aberration_intensity", 0.005)
+	shader_material.set_shader_parameter("vignette_amount", 0.914)
+	shader_material.set_shader_parameter("vignette_radius", 0.807)
 
+
+
+	get_tree().create_timer(0.3).timeout.connect(_on_ready_timeout)
+	viewport.connect("size_changed", Callable(self, "_on_viewport_size_changed"))
 
 #	var pause_menu_scene: PackedScene = preload("res://Scenes/Common/settings_menu.tscn")
 #	pause_menu = pause_menu_scene.instantiate()
@@ -39,7 +52,8 @@ func _ready() -> void:
 #
 #	await get_tree().get_root().call_deferred("add_child", pause_menu)
 
-
+func _on_viewport_size_changed() -> void:
+	shader_material.set_shader_parameter("tex", viewport.get_texture())
 
 func _on_ready_timeout():
 	viewport_container.set_visible(true)

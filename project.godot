@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="goedjam"
-run/main_scene="uid://dtee8ww7fswr3"
+run/main_scene="uid://xxvbrrfjhpl3"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 config/icon="res://icon.svg"
 
