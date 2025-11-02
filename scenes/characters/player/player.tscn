@@ -492,6 +492,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.96238124)
 script = ExtResource("3_djydg")
 player_weapon_sprite_handle = NodePath("../../WeaponSpriteHandle")
 number_of_projectiles_per_shot = 3
+spread_angle_degrees = 6.0
+windup_time = 0.0
 cooldown_time = 0.2
 metadata/_custom_type_script = "uid://k7y7m3lyep1h"
 
