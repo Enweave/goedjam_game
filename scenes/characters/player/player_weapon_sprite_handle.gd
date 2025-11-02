@@ -1,5 +1,8 @@
 extends Node3D
 
+
+class_name PlayerWeaponSpriteHandle
+
 var sprite: AnimatedSprite3D
 var character: CharacterWithHealth
 var _initial_transform_location: Vector3
@@ -39,6 +42,20 @@ func _ready() -> void:
 
 	sprite.play(ANIMATION_NAMES[AnimationState.IDLE])
 
+func idle():
+	sprite.stop()
+	sprite.play(ANIMATION_NAMES[AnimationState.IDLE])
+
+
+func fire():
+	sprite.stop()
+	sprite.play(ANIMATION_NAMES[AnimationState.FIRE])
+
+func reload():
+	sprite.stop()
+	sprite.play(ANIMATION_NAMES[AnimationState.RELOAD])
+
+
 func _process(_delta: float) -> void:
 	if character == null or sprite == null:
 		return
@@ -51,14 +68,17 @@ func _process(_delta: float) -> void:
 		sprite.flip_h = true
 		_vec = Vector3.LEFT
 
-	self.set_quaternion(Quaternion(
-		_vec,
-		Vector3(
-			character.character_controller.aiming_direction.x,
-			0,
-			character.character_controller.aiming_direction.y
-		)
-	))
+	var _sprite_direction: Vector3 = Vector3(
+		character.character_controller.aiming_direction.x,
+		0,
+		character.character_controller.aiming_direction.y
+	).normalized()
+
+	if _sprite_direction != Vector3.ZERO:
+		self.set_quaternion(Quaternion(
+			_vec,
+			_sprite_direction
+		))
 
 	if character.character_controller.aiming_direction.y < 0:
 		self.transform.origin = Vector3(0, -0.35, 0.45)

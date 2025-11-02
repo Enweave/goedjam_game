@@ -19,7 +19,6 @@ var ANIMATION_NAMES: Dictionary = {
 }
 
 func _ready() -> void:
-	# get first child and check if it's a Sprite3D
 	var children: Array[Node] = get_children()
 	for child in children:
 		if child is AnimatedSprite3D:

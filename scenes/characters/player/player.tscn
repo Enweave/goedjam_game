@@ -1,15 +1,16 @@
-[gd_scene load_steps=73 format=3 uid="uid://p6r7g7l6bfnd"]
+[gd_scene load_steps=74 format=3 uid="uid://p6r7g7l6bfnd"]
 
 [ext_resource type="Script" uid="uid://bmea3fk2bgbmf" path="res://scenes/characters/player/player.gd" id="1_7uws0"]
 [ext_resource type="PackedScene" uid="uid://dudqxy6dbjysm" path="res://scenes/characters/common/character_collision_shape_3d.tscn" id="2_hss88"]
 [ext_resource type="Script" uid="uid://v1gk7drsywnj" path="res://scenes/characters/player/player_camera.gd" id="2_t61fv"]
 [ext_resource type="Script" uid="uid://xjyowidksewx" path="res://core/combat/health_component.gd" id="3_686vu"]
+[ext_resource type="Script" uid="uid://k7y7m3lyep1h" path="res://scenes/characters/player/player_weapon.gd" id="3_djydg"]
 [ext_resource type="Shader" uid="uid://b0dbp348r00xt" path="res://shaders/crt.gdshader" id="4_qd3e3"]
 [ext_resource type="Script" uid="uid://xowne7ibxicv" path="res://scenes/characters/player/camera_color_rect.gd" id="5_6avc5"]
 [ext_resource type="Script" uid="uid://bj3nikt4pi5k4" path="res://scenes/characters/player/player_sprite_handle.gd" id="7_xuses"]
 [ext_resource type="Texture2D" uid="uid://crvj1xykr2htu" path="res://assets/sprites/player_sheet.png" id="8_xuses"]
-[ext_resource type="Script" uid="uid://ddwol0dhk56bx" path="res://scenes/characters/player/weapon_sprite_handle.gd" id="9_3xnwo"]
 [ext_resource type="Texture2D" uid="uid://dby35jovote8y" path="res://assets/sprites/shotgun_sheet.png" id="9_42irl"]
+[ext_resource type="Script" uid="uid://ddwol0dhk56bx" path="res://scenes/characters/player/player_weapon_sprite_handle.gd" id="10_djydg"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_rp718"]
 
@@ -486,6 +487,14 @@ metadata/_custom_type_script = "uid://cky7a4jh04rat"
 [node name="BodyRoot" type="Node3D" parent="."]
 unique_name_in_owner = true
 
+[node name="PlayerWeapon" type="Node3D" parent="BodyRoot" node_paths=PackedStringArray("player_weapon_sprite_handle")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.96238124)
+script = ExtResource("3_djydg")
+player_weapon_sprite_handle = NodePath("../../WeaponSpriteHandle")
+number_of_projectiles_per_shot = 3
+cooldown_time = 0.2
+metadata/_custom_type_script = "uid://k7y7m3lyep1h"
+
 [node name="MeshInstance3D" type="MeshInstance3D" parent="BodyRoot"]
 visible = false
 mesh = SubResource("CapsuleMesh_rp718")
@@ -544,14 +553,12 @@ rings = 8
 
 [node name="WeaponSpriteHandle" type="Node3D" parent="."]
 transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0.471, 0.815)
-script = ExtResource("9_3xnwo")
+script = ExtResource("10_djydg")
 
 [node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="WeaponSpriteHandle"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.19985916)
 axis = 1
 texture_filter = 0
 sprite_frames = SubResource("SpriteFrames_kl5g2")
-animation = &"fire"
+animation = &"reload"
 autoplay = "default"
-frame = 6
-frame_progress = 1.0

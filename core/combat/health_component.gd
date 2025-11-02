@@ -21,7 +21,7 @@ var current_health: float
 var is_invulnerable: bool = false
 var is_dead: bool		 = false
 
-const FIELD_NAME: String = "HealthComponent"
+const FIELD_NAME: String = "health_component"
 
 signal OnDamage(amount: float)
 signal OnHeal(amount: float)
