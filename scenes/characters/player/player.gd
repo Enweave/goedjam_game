@@ -23,6 +23,12 @@ func _ready():
 
 	PlayerStateAutoload.set_current_player_character(self)
 	health_component.OnDamage.connect(_on_player_damage)
+	health_component.OnHeal.connect(func (_amount: float) -> void:
+		PlayerStateAutoload.notify_from_health_component(health_component)
+	)
+
+	await get_tree().create_timer(1.0).timeout
+	PlayerStateAutoload.notify_from_health_component(health_component)
 
 
 func _on_control_mode_changed(new_mode: PlayerController.ControlMethods):
@@ -54,8 +60,11 @@ func _update_controller_aim_rotation_from_mouse():
 
 
 func _on_player_damage(_amount: float) -> void:
+	if health_component.is_invulnerable:
+		return
 	health_component.is_invulnerable = true
 	_invulnerability_timer.start()
+	PlayerStateAutoload.notify_from_health_component(health_component)
 
 
 func _end_invulnerability() -> void:
