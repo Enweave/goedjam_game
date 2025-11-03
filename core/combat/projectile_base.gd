@@ -42,6 +42,9 @@ func _on_body_entered(_body: Node) -> void:
 		return
 
 	if _body:
+		# check if queued for delete
+		if _body.is_queued_for_deletion() or _weapon.is_queued_for_deletion():
+			return
 		WeaponBase.damage_character(_body, _weapon.damage)
 
 	if !pierce:

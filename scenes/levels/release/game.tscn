@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=3 uid="uid://d2g55xkot0umo"]
+[gd_scene load_steps=42 format=3 uid="uid://d2g55xkot0umo"]
 
 [ext_resource type="Script" uid="uid://chgi8s5jhb48u" path="res://core/scene_management/scene_base.gd" id="1_f0qvk"]
 [ext_resource type="PackedScene" uid="uid://p6r7g7l6bfnd" path="res://scenes/characters/player/player.tscn" id="2_dvdjy"]
@@ -25,20 +25,18 @@
 [ext_resource type="PackedScene" uid="uid://x2bexrtx85aa" path="res://assets/tileset/houseobjects/piano.gltf" id="23_j344g"]
 [ext_resource type="PackedScene" uid="uid://3e7qeuc2k0al" path="res://assets/tileset/houseobjects/chairs.gltf" id="24_8xa5q"]
 [ext_resource type="PackedScene" uid="uid://46nrcxxlty2i" path="res://assets/tileset/houseobjects/ROCK.gltf" id="25_nk4ab"]
-[ext_resource type="PackedScene" uid="uid://babdtj2l3mcbc" path="res://scenes/characters/enemies/enemy_fly.tscn" id="26_78i7y"]
 [ext_resource type="PackedScene" uid="uid://c2xppxh8mspfe" path="res://assets/tileset/houseobjects/paintings/painting_01.gltf" id="26_r1pwh"]
 [ext_resource type="PackedScene" uid="uid://dpcpnu5b44t2j" path="res://assets/tileset/houseobjects/paintings/painting_02.gltf" id="27_2jfy1"]
-[ext_resource type="PackedScene" uid="uid://d1ovxarhjxn4q" path="res://scenes/characters/enemies/enemy_worm.tscn" id="27_cbukv"]
-[ext_resource type="PackedScene" uid="uid://dcdt31u5wcw81" path="res://scenes/characters/enemies/enemy_orb.tscn" id="28_4c56e"]
 [ext_resource type="PackedScene" uid="uid://bg2qdx2hhteht" path="res://assets/tileset/houseobjects/paintings/painting_03.gltf" id="28_rn05h"]
 [ext_resource type="PackedScene" uid="uid://1lq6745a07sg" path="res://assets/tileset/houseobjects/paintings/painting_04.gltf" id="29_8dvv6"]
-[ext_resource type="PackedScene" uid="uid://d18l8pwphmxtp" path="res://scenes/characters/enemies/enemy_eyebat.tscn" id="29_33tjn"]
 [ext_resource type="PackedScene" uid="uid://2osc5tc2srui" path="res://assets/tileset/houseobjects/paintings/painting_05.gltf" id="30_nyk2a"]
 [ext_resource type="PackedScene" uid="uid://c2cywmwp74id0" path="res://assets/tileset/houseobjects/paintings/painting_07.gltf" id="31_k4egv"]
 [ext_resource type="PackedScene" uid="uid://dr45qomap5yxg" path="res://assets/tileset/houseobjects/paintings/painting_06.gltf" id="32_2jr0d"]
 [ext_resource type="PackedScene" uid="uid://blvslw2cukdkf" path="res://assets/tileset/houseobjects/paintings/painting_08.gltf" id="33_cqtnp"]
 [ext_resource type="PackedScene" uid="uid://dxaax1cl788oh" path="res://assets/tileset/houseobjects/paintings/painting_09.gltf" id="34_3pkp6"]
 [ext_resource type="PackedScene" uid="uid://bo205icdjgi4q" path="res://assets/tileset/houseobjects/paintings/painting_10.gltf" id="35_6n8t7"]
+[ext_resource type="PackedScene" uid="uid://b3enmpjivp87h" path="res://scenes/characters/common/enemy_spawner.tscn" id="36_tr3r8"]
+[ext_resource type="PackedScene" uid="uid://cyqd7h3hgo5ue" path="res://scenes/characters/common/wave_manager.tscn" id="37_5vhpe"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_52kye"]
 size = Vector2(20, 20)
@@ -402,17 +400,23 @@ transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, -20, 0.87, -34.986)
 [node name="blockbench_export12" parent="NavigationRegion3D/houseobjects/galleryroom" instance=ExtResource("35_6n8t7")]
 transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 12.698, 0.8, -13.1951)
 
-[node name="EnemyBase" parent="." instance=ExtResource("26_78i7y")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.8865, 4.08254, -2.05451)
+[node name="EnemySpawner" parent="." groups=["EnemySpawners"] instance=ExtResource("36_tr3r8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -34.0335, 4.60182, 76.444)
 
-[node name="EnemyBase2" parent="." instance=ExtResource("26_78i7y")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.25979, 4.08253, -0.564299)
+[node name="EnemySpawner2" parent="." groups=["EnemySpawners"] instance=ExtResource("36_tr3r8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27.5941, 4.60182, 76.444)
 
-[node name="EnemyBase3" parent="." instance=ExtResource("27_cbukv")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.19082, 3.05073, -4.07143)
+[node name="EnemySpawner3" parent="." groups=["EnemySpawners"] instance=ExtResource("36_tr3r8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -55.9668, 4.60182, -31.5703)
 
-[node name="EnemyBase4" parent="." instance=ExtResource("28_4c56e")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.10361, 4.80617, -10.936)
+[node name="EnemySpawner4" parent="." groups=["EnemySpawners"] instance=ExtResource("36_tr3r8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27.3503, 4.60182, -31.5703)
 
-[node name="EnemyBase5" parent="." instance=ExtResource("29_33tjn")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.9361, 5.58252, -12.7019)
+[node name="EnemySpawner5" parent="." groups=["EnemySpawners"] instance=ExtResource("36_tr3r8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -53.5893, 4.60182, 10.7578)
+
+[node name="EnemySpawner6" parent="." groups=["EnemySpawners"] instance=ExtResource("36_tr3r8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40.0444, 4.60182, 33.5029)
+
+[node name="WaveManager" parent="." instance=ExtResource("37_5vhpe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -82.8951, 3.64292, 1.29549)
