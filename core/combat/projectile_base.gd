@@ -1,4 +1,4 @@
-﻿extends Node3D
+extends Node3D
 class_name ProjectileBase
 
 const HALF_PI: float = PI / 2
@@ -41,7 +41,8 @@ func _on_body_entered(_body: Node) -> void:
 	if _body == _instigator:
 		return
 
-	WeaponBase.damage_character(_body, _weapon.damage)
+	if _body:
+		WeaponBase.damage_character(_body, _weapon.damage)
 
 	if !pierce:
 		kill_projectile()
@@ -68,7 +69,6 @@ func launch(in_instigator: Node3D, in_weapon: WeaponBase) -> void:
 		return
 	if movement_mode == MovementMode.BALLISTIC or movement_mode == MovementMode.LINEAR:
 		_velocity = _control_direction.normalized() * speed
-		print("_velocity: ", _velocity)
 		return
 
 
@@ -133,4 +133,3 @@ func suggest_launch_velocity(start_position: Vector3, target_position: Vector3, 
 			velocity_x = -velocity_x
 
 	return Vector3(velocity_x,0, -velocity_y)
-

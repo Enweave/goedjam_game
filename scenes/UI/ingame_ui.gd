@@ -10,7 +10,20 @@ class_name IngameUI
 var bullet_widget_scene: PackedScene = preload("res://scenes/UI/bullet_widget.tscn")
 
 
+@onready var wave_widget: Control = %WaveWidget
+@onready var wave_label: Label = %WaveLabel
+@onready var wave_anim_player: AnimationPlayer = %WaveAnimationPlayer
+@onready var results_container: Control = %ResultsContainer
+
+
+var result_label_scene : PackedScene = preload("res://scenes/UI/results_label.tscn")
+
 var _magazine_size: int = 0
+
+
+func update_wave_display(in_wave: int) -> void:
+	wave_widget.visible = true
+	wave_label.text = "Wave %d incoming!" % in_wave
 
 
 func reset() -> void:
@@ -18,8 +31,22 @@ func reset() -> void:
 	game_over_widget.visible = false
 
 
+func add_endgame_stat(in_name: String, in_value: String) -> void:
+	var name_label: Label = result_label_scene.instantiate()
+	var value_label: Label = result_label_scene.instantiate()
+	name_label.text = in_name
+	value_label.text = in_value
+	results_container.add_child(name_label)
+	results_container.add_child(value_label)
+
 func game_over() -> void:
 	game_over_widget.visible = true
+	for child in results_container.get_children():
+		results_container.remove_child(child)
+		child.queue_free()
+
+	add_endgame_stat("Waves Survived", str(PlayerStateAutoload.current_wave - 1))
+	add_endgame_stat("Enemies Killed", str(PlayerStateAutoload.enemies_killed))
 
 
 func _ready() -> void:
@@ -29,6 +56,11 @@ func _ready() -> void:
 		game_over_widget.visible = false
 	)
 
+	wave_anim_player.animation_finished.connect(_on_wave_animation_finished)
+
+
+func _on_wave_animation_finished(_anim_name: String) -> void:
+	wave_widget.visible = false
 
 func update_health_display(in_health_component: HealthComponent) -> void:
 	health_widget.value = in_health_component.current_health / in_health_component.current_max_health * 100.0

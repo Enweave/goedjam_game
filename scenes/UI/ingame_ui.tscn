@@ -1,10 +1,71 @@
-[gd_scene load_steps=6 format=3 uid="uid://cadcjjrms0h8v"]
+[gd_scene load_steps=9 format=3 uid="uid://cadcjjrms0h8v"]
 
 [ext_resource type="Script" uid="uid://dqgmxlxdr33ur" path="res://scenes/UI/ingame_ui.gd" id="1_rjfv6"]
 [ext_resource type="Theme" uid="uid://b38jgwqg4syy5" path="res://scenes/UI/default_theme.tres" id="2_0lrgu"]
 [ext_resource type="PackedScene" uid="uid://br1lhlfgu6fcq" path="res://scenes/UI/bullet_widget.tscn" id="2_nlibn"]
 [ext_resource type="Texture2D" uid="uid://oh7npishdftp" path="res://assets/nineslice.png" id="4_1p52g"]
 [ext_resource type="PackedScene" uid="uid://cx8bdf1u64af" path="res://scenes/UI/custom_button.tscn" id="5_1p52g"]
+
+[sub_resource type="Animation" id="Animation_1p52g"]
+resource_name = "reveal"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.433333, 1.43333, 1.9),
+"transitions": PackedFloat32Array(1.62451, 1.62451, 0.34151, 0.34151),
+"update": 0,
+"values": [Vector2(0, -200), Vector2(0, 0), Vector2(0, 0), Vector2(0, -200)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.443333, 0.573333, 0.763333, 0.943333, 1.19333, 1.42333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.0174533, -0.0296706, 0.0226893, 0.0, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_th5y5"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -200)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_qg285"]
+_data = {
+&"RESET": SubResource("Animation_th5y5"),
+&"reveal": SubResource("Animation_1p52g")
+}
 
 [node name="IngameUi" type="Control"]
 layout_mode = 3
@@ -108,17 +169,57 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="GridContainer" type="GridContainer" parent="GameOverWidget/MarginContainer/VBoxContainer/NinePatchRect/MarginContainer"]
+[node name="ResultsContainer" type="GridContainer" parent="GameOverWidget/MarginContainer/VBoxContainer/NinePatchRect/MarginContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 columns = 2
-
-[node name="Label" type="Label" parent="GameOverWidget/MarginContainer/VBoxContainer/NinePatchRect/MarginContainer/GridContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "stats go here"
 
 [node name="MainMenuButton" parent="GameOverWidget/MarginContainer/VBoxContainer" instance=ExtResource("5_1p52g")]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
 text = "MAIN MENU"
+
+[node name="WaveWidget" type="MarginContainer" parent="."]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -400.0
+offset_top = -199.998
+offset_right = 400.0
+offset_bottom = -59.9983
+grow_horizontal = 2
+pivot_offset = Vector2(400, 50)
+
+[node name="NinePatchRect" type="NinePatchRect" parent="WaveWidget"]
+custom_minimum_size = Vector2(400, 100)
+layout_mode = 2
+size_flags_horizontal = 4
+texture = ExtResource("4_1p52g")
+patch_margin_left = 3
+patch_margin_top = 3
+patch_margin_right = 3
+patch_margin_bottom = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="WaveWidget/NinePatchRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="WaveLabel" type="Label" parent="WaveWidget/NinePatchRect/MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Wave 1 incoming!"
+horizontal_alignment = 1
+
+[node name="WaveAnimationPlayer" type="AnimationPlayer" parent="WaveWidget"]
+unique_name_in_owner = true
+libraries = {
+&"": SubResource("AnimationLibrary_qg285")
+}
