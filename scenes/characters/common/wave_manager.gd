@@ -21,14 +21,24 @@ func _ready() -> void:
 	SceneManagerAutoload.get_current_scene().call_deferred("add_child", spawn_timer)
 	_on_spawn_timer_timeout()
 
+
+func get_number_to_spawn(_wave_number: int) -> int:
+	var base_number: int = 1
+	var scaling_factor: float = 1.3
+	var calculated_number: int = int(base_number * pow(scaling_factor, _wave_number - 1))
+	if calculated_number > 20:
+		return 20
+	return calculated_number
+
 func _on_spawn_timer_timeout() -> void:
 	if spawned_characters.size() == 0:
 		PlayerStateAutoload.increase_wave()
 		print_debug("Wave ", PlayerStateAutoload.current_wave, " starting.")
 		for spawner in spawners:
-			var _instance: CharacterWithHealth = spawner.spawn_enemy(PlayerStateAutoload.current_wave)
-			spawned_characters.append(_instance)
-			_instance.OnCharacterDied.connect(_on_spawned_character_death)
+			for i in get_number_to_spawn(PlayerStateAutoload.current_wave):
+				var _instance: CharacterWithHealth = spawner.spawn_enemy(PlayerStateAutoload.current_wave)
+				spawned_characters.append(_instance)
+				_instance.OnCharacterDied.connect(_on_spawned_character_death)
 		PlayerStateAutoload.notify_wave_started()
 		PlayerStateAutoload.current_player_character.health_component.heal(5.)
 

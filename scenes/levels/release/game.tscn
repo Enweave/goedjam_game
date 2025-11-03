@@ -447,7 +447,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -42.4403, 2, -24.4439)
 enemy_scenes = Array[PackedScene]([ExtResource("37_rn05h")])
 
 [node name="EnemySpawner7" parent="." groups=["EnemySpawners"] instance=ExtResource("36_tr3r8")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.4481, 2, -42.3588)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.4481, 2, -44.13226)
 enemy_scenes = Array[PackedScene]([ExtResource("37_rn05h"), ExtResource("38_8dvv6"), ExtResource("39_nyk2a")])
 
 [node name="EnemySpawner4" parent="." groups=["EnemySpawners"] instance=ExtResource("36_tr3r8")]

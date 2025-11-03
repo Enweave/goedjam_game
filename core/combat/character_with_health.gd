@@ -18,7 +18,8 @@ func _ready() -> void:
 
 
 func _on_damage(_amount: float) -> void:
-	print_debug("%s took %f damage" % [self.name, _amount])
+	pass
+	# print_debug("%s took %f damage" % [self.name, _amount])
 
 
 func _on_death() -> void:

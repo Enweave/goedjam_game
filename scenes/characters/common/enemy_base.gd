@@ -20,5 +20,7 @@ func _on_death() -> void:
 	self.collision_layer = 0
 	self.collision_mask = 0
 
+	velocity = Vector3.ZERO
+
 	OnCharacterDied.emit(self)
 	get_tree().create_timer(DEATH_TIMEOUT_SECONDS).timeout.connect(queue_free)
