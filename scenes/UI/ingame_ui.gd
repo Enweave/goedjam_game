@@ -24,6 +24,7 @@ var _magazine_size: int = 0
 func update_wave_display(in_wave: int) -> void:
 	wave_widget.visible = true
 	wave_label.text = "Wave %d incoming!" % in_wave
+	wave_anim_player.play("reveal")
 
 
 func reset() -> void:

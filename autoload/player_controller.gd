@@ -11,8 +11,11 @@ enum InputActions {
 	AimRight,
 	AimUp,
 	AimDown,
-	Fire
+	Fire,
+	Reload
 }
+
+signal OnReloadRequested
 
 func _ready() -> void:
 	super._ready()
@@ -33,6 +36,7 @@ var input_actions: Dictionary = {
 	InputActions.AimRight: "input_AimRight",
 
 	InputActions.Fire: "input_Fire",
+	InputActions.Reload: "input_Reload"
 }
 
 func _process(_delta: float) -> void:
@@ -43,6 +47,9 @@ func _process(_delta: float) -> void:
 
 	if Input.is_action_just_pressed(input_actions[InputActions.Fire]):
 		OnFeatureActivated.emit()
+
+	if Input.is_action_just_pressed(input_actions[InputActions.Reload]):
+		OnReloadRequested.emit()
 
 	if Input.is_action_just_released(input_actions[InputActions.Fire]):
 		OnFeatureDeactivated.emit()

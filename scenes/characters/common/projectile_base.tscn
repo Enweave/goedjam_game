@@ -37,7 +37,8 @@ radius = 0.15
 
 [node name="ProjectileBase" type="Node3D"]
 script = ExtResource("1_5m1ih")
-lifetime = 3.0
+lifetime = 1.0
+speed = 12.0
 
 [node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="."]
 transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 0)

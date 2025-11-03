@@ -41,12 +41,14 @@ func _ready() -> void:
 	PlayerStateAutoload.notify_from_weapon(self)
 
 	player_controller.OnControlledCharacterDied.connect(_on_controlled_character_died)
+	player_controller.OnReloadRequested.connect(reload)
 
 
 func _on_controlled_character_died() -> void:
-	print("PlayerWeapon: Controlled character died, disconnecting signals.")
+	print_debug("PlayerWeapon: Controlled character died, disconnecting signals.")
 	player_controller.OnFeatureActivated.disconnect(fire)
 	player_controller.OnFeatureDeactivated.disconnect(deactivate)
+	player_controller.OnReloadRequested.disconnect(reload)
 
 
 func _on_cooldown_passed():
@@ -130,6 +132,10 @@ func set_magazine_size(size: int) -> void:
 func reload() -> void:
 	if _is_reloading:
 		return
+
+	if current_ammo == magazine_size:
+		return
+
 	lock()
 	PlayerStateAutoload.notify_from_weapon(self)
 	if reload_sfx_player != null:
