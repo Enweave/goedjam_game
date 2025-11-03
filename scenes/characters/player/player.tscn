@@ -1,4 +1,4 @@
-[gd_scene load_steps=74 format=3 uid="uid://p6r7g7l6bfnd"]
+[gd_scene load_steps=72 format=3 uid="uid://p6r7g7l6bfnd"]
 
 [ext_resource type="Script" uid="uid://bmea3fk2bgbmf" path="res://scenes/characters/player/player.gd" id="1_7uws0"]
 [ext_resource type="PackedScene" uid="uid://dudqxy6dbjysm" path="res://scenes/characters/common/character_collision_shape_3d.tscn" id="2_hss88"]
@@ -9,10 +9,6 @@
 [ext_resource type="Texture2D" uid="uid://crvj1xykr2htu" path="res://assets/sprites/player_sheet.png" id="8_xuses"]
 [ext_resource type="Texture2D" uid="uid://dby35jovote8y" path="res://assets/sprites/shotgun_sheet.png" id="9_42irl"]
 [ext_resource type="Script" uid="uid://ddwol0dhk56bx" path="res://scenes/characters/player/player_weapon_sprite_handle.gd" id="10_djydg"]
-
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_rp718"]
-
-[sub_resource type="PrismMesh" id="PrismMesh_yewv4"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_42irl"]
 atlas = ExtResource("8_xuses")
@@ -520,16 +516,6 @@ windup_time = 0.0
 cooldown_time = 0.2
 full_auto = true
 metadata/_custom_type_script = "uid://k7y7m3lyep1h"
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="BodyRoot"]
-visible = false
-mesh = SubResource("CapsuleMesh_rp718")
-skeleton = NodePath("../..")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="BodyRoot/MeshInstance3D"]
-transform = Transform3D(-0.625961, 8.74228e-08, -1.84277e-15, 0, -4.37114e-08, -0.482226, -5.47233e-08, -1, 2.10788e-08, 0, 0.788606, -0.260014)
-visible = false
-mesh = SubResource("PrismMesh_yewv4")
 
 [node name="CameraRoot" type="Node3D" parent="."]
 unique_name_in_owner = true
