@@ -1,0 +1,38 @@
+[remap]
+
+importer="texture"
+type="CompressedTexture2D"
+uid="uid://qyphrafunn41"
+path.s3tc="res://.godot/imported/painting_02_0.png-a3300ac3d1a48cd498f86fd64c40efed.s3tc.ctex"
+metadata={
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
+}
+generator_parameters={
+"md5": "9248eea8c5460ac2e21ad4a5cdd99cbf"
+}
+
+[deps]
+
+source_file="res://assets/tileset/houseobjects/paintings/painting_02_0.png"
+dest_files=["res://.godot/imported/painting_02_0.png-a3300ac3d1a48cd498f86fd64c40efed.s3tc.ctex"]
+
+[params]
+
+compress/mode=2
+compress/high_quality=false
+compress/lossy_quality=0.7
+compress/hdr_compression=1
+compress/normal_map=0
+compress/channel_pack=0
+mipmaps/generate=true
+mipmaps/limit=-1
+roughness/mode=0
+roughness/src_normal=""
+process/fix_alpha_border=true
+process/premult_alpha=false
+process/normal_map_invert_y=false
+process/hdr_as_srgb=false
+process/hdr_clamp_exposure=false
+process/size_limit=0
+detect_3d/compress_to=0
