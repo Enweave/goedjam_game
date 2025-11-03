@@ -1,9 +1,10 @@
-[gd_scene load_steps=25 format=3 uid="uid://d18l8pwphmxtp"]
+[gd_scene load_steps=26 format=3 uid="uid://d18l8pwphmxtp"]
 
 [ext_resource type="Script" uid="uid://q0xpdnen5hge" path="res://scenes/characters/common/enemy_base.gd" id="1_6rl7b"]
 [ext_resource type="PackedScene" uid="uid://dudqxy6dbjysm" path="res://scenes/characters/common/character_collision_shape_3d.tscn" id="2_w5gvj"]
 [ext_resource type="Script" uid="uid://xjyowidksewx" path="res://core/combat/health_component.gd" id="3_q76en"]
-[ext_resource type="Script" uid="uid://s7b4gwpsxxwk" path="res://scenes/characters/common/ai_controller.gd" id="4_gqcph"]
+[ext_resource type="Script" uid="uid://ukwpq1xnbjh8" path="res://scenes/characters/common/ranged_ai_controller.gd" id="4_q76en"]
+[ext_resource type="PackedScene" uid="uid://bdmkrc22xuas4" path="res://scenes/characters/common/ranged_weapon.tscn" id="4_w5gvj"]
 [ext_resource type="Script" uid="uid://htts4jxy8uka" path="res://scenes/characters/common/enemy_sprite_handle.gd" id="5_bwqbr"]
 [ext_resource type="Texture2D" uid="uid://bpj743acr0o1a" path="res://assets/sprites/eyebat.png" id="6_6rl7b"]
 
@@ -128,6 +129,7 @@ animations = [{
 [node name="EnemyBase" type="CharacterBody3D" node_paths=PackedStringArray("health_component")]
 script = ExtResource("1_6rl7b")
 health_component = NodePath("HealthComponent")
+BASE_MOVEMENT_SPEED = 6.0
 metadata/_custom_type_script = "uid://d38vogc71un30"
 
 [node name="CollisionShape3D" parent="." instance=ExtResource("2_w5gvj")]
@@ -136,8 +138,18 @@ metadata/_custom_type_script = "uid://d38vogc71un30"
 script = ExtResource("3_q76en")
 metadata/_custom_type_script = "uid://xjyowidksewx"
 
+[node name="AIController" type="Node3D" parent="." node_paths=PackedStringArray("weapon", "nav_agent", "sprite_hanlde")]
+script = ExtResource("4_q76en")
+weapon = NodePath("../BodyRoot/RangedWeapon")
+nav_agent = NodePath("../NavigationAgent3D")
+sprite_hanlde = NodePath("../EnemySpriteHandle")
+metadata/_custom_type_script = "uid://s7b4gwpsxxwk"
+
 [node name="BodyRoot" type="Node3D" parent="."]
 unique_name_in_owner = true
+
+[node name="RangedWeapon" parent="BodyRoot" instance=ExtResource("4_w5gvj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.460225)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="BodyRoot"]
 visible = false
@@ -154,11 +166,6 @@ mesh = SubResource("PrismMesh_uo6so")
 avoidance_enabled = true
 radius = 1.0
 use_3d_avoidance = true
-
-[node name="AIController" type="Node3D" parent="." node_paths=PackedStringArray("nav_agent")]
-script = ExtResource("4_gqcph")
-nav_agent = NodePath("../NavigationAgent3D")
-metadata/_custom_type_script = "uid://s7b4gwpsxxwk"
 
 [node name="EnemySpriteHandle" type="Node3D" parent="."]
 transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0)

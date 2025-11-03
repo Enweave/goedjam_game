@@ -532,6 +532,7 @@ visible = false
 mesh = SubResource("PrismMesh_yewv4")
 
 [node name="CameraRoot" type="Node3D" parent="."]
+unique_name_in_owner = true
 top_level = true
 script = ExtResource("2_t61fv")
 

@@ -1,5 +1,8 @@
 extends Node3D
 
+
+class_name PlayerCamera
+
 var root: Node3D
 var MAX_TARGET_DISTANCE: float = 2.0
 

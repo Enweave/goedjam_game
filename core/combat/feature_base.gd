@@ -17,8 +17,7 @@ signal OnWindup
 signal OnActivation
 signal OnCooldownPassed
 
-var _target_direction: Vector3 = Vector3.ZERO
-var _target_position: Vector3  = Vector3.ZERO
+
 var _target_object: Node3D     = null
 
 
@@ -26,13 +25,14 @@ func _ready():
 	pass
 
 
-func set_target(in_direction: Vector3 = Vector3.ZERO, in_position: Vector3 = Vector3.ZERO, in_object: Node3D = null) -> void:
-	_target_direction = in_direction
-	_target_position = in_position
-	_target_object = in_object
-
 
 func get_target_direction() -> Vector3:
+	if _target_object == null:
+		return Vector3.ZERO
+
+	var _target_direction: Vector3 = _target_object.global_position - self.global_position
+	_target_direction = _target_direction.normalized()
+
 	return _target_direction
 
 

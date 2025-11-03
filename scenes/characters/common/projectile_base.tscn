@@ -1,0 +1,52 @@
+[gd_scene load_steps=8 format=3 uid="uid://0upnka86eopg"]
+
+[ext_resource type="Script" uid="uid://cpiym0rostdn8" path="res://core/combat/projectile_base.gd" id="1_5m1ih"]
+[ext_resource type="Texture2D" uid="uid://bxl0ilhyxm0uj" path="res://assets/sprites/projectile_01.png" id="2_tvhsu"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ymhs0"]
+atlas = ExtResource("2_tvhsu")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ya7t3"]
+atlas = ExtResource("2_tvhsu")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8e3pu"]
+atlas = ExtResource("2_tvhsu")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_3fo8w"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ymhs0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ya7t3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8e3pu")
+}],
+"loop": true,
+"name": &"default",
+"speed": 12.0
+}]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_tvhsu"]
+radius = 0.15
+
+[node name="ProjectileBase" type="Node3D"]
+script = ExtResource("1_5m1ih")
+lifetime = 3.0
+
+[node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="."]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 0)
+billboard = 1
+sprite_frames = SubResource("SpriteFrames_3fo8w")
+frame_progress = 0.814863
+
+[node name="DamageArea" type="Area3D" parent="."]
+unique_name_in_owner = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DamageArea"]
+shape = SubResource("SphereShape3D_tvhsu")

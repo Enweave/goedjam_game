@@ -9,6 +9,8 @@ var TRACKING_INTERVAL: float = 0.1
 @export var sprite_hanlde: EnemySpriteHandle
 
 var player_state: PlayerState
+var chase_enabled: bool = true
+
 
 func _ready() -> void:
 	super._ready()
@@ -28,6 +30,9 @@ func _ready() -> void:
 
 
 func track_target() -> void:
+	if !chase_enabled:
+		return
+
 	if current_target_node:
 		nav_agent.set_target_position(current_target_node.global_transform.origin)
 		current_target_position = current_target_node.global_transform.origin

@@ -4,6 +4,7 @@ extends CharacterWithHealth
 class_name Player
 
 @onready var player_camera: Node3D = %PlayerCamera
+@onready var camera_root: PlayerCamera = %CameraRoot
 @onready var invulnerability_time: float = 0.6
 var _invulnerability_timer: Timer
 
@@ -62,6 +63,7 @@ func _update_controller_aim_rotation_from_mouse():
 func _on_player_damage(_amount: float) -> void:
 	if health_component.is_invulnerable:
 		return
+	camera_root.shake()
 	health_component.is_invulnerable = true
 	_invulnerability_timer.start()
 	PlayerStateAutoload.notify_from_health_component(health_component)

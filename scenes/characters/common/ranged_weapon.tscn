@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://bdmkrc22xuas4"]
+
+[ext_resource type="Script" uid="uid://b717s8t6vq7d1" path="res://core/combat/ranged_weapon.gd" id="1_yuia5"]
+[ext_resource type="PackedScene" uid="uid://0upnka86eopg" path="res://scenes/characters/common/projectile_base.tscn" id="2_mnpxd"]
+
+[node name="RangedWeapon" type="Node3D"]
+script = ExtResource("1_yuia5")
+projectile_scene = ExtResource("2_mnpxd")
+full_auto = true
+metadata/_custom_type_script = "uid://b717s8t6vq7d1"
+
+[node name="SensorArea" type="Area3D" parent="."]
+unique_name_in_owner = true
+collision_layer = 0
