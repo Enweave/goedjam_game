@@ -394,12 +394,15 @@ animations = [{
 [node name="EnemyBase" type="CharacterBody3D" node_paths=PackedStringArray("health_component")]
 script = ExtResource("1_2mphp")
 health_component = NodePath("HealthComponent")
+BASE_MOVEMENT_SPEED = 9.5
 metadata/_custom_type_script = "uid://d38vogc71un30"
 
 [node name="CollisionShape3D" parent="." instance=ExtResource("2_v0ubf")]
 
 [node name="HealthComponent" type="Node" parent="."]
 script = ExtResource("3_tcrtn")
+BASE_HEALTH = 6.0
+BASE_HEALTH_REGEN_RATE = 0.0
 metadata/_custom_type_script = "uid://xjyowidksewx"
 
 [node name="AIController" type="Node3D" parent="." node_paths=PackedStringArray("weapon", "nav_agent", "sprite_hanlde")]

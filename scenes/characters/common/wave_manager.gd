@@ -30,6 +30,9 @@ func _on_spawn_timer_timeout() -> void:
 			spawned_characters.append(_instance)
 			_instance.OnCharacterDied.connect(_on_spawned_character_death)
 		PlayerStateAutoload.notify_wave_started()
+		PlayerStateAutoload.current_player_character.health_component.heal(5.)
+
+
 	else:
 		print_debug("Wave cannot start yet, [%d] still alive. " % spawned_characters.size())
 

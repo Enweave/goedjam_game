@@ -100,6 +100,8 @@ metadata/_custom_type_script = "uid://d38vogc71un30"
 
 [node name="HealthComponent" type="Node" parent="."]
 script = ExtResource("3_osqwf")
+BASE_HEALTH = 6.0
+BASE_HEALTH_REGEN_RATE = 0.0
 metadata/_custom_type_script = "uid://xjyowidksewx"
 
 [node name="AIController" type="Node3D" parent="." node_paths=PackedStringArray("weapon", "nav_agent", "sprite_hanlde")]

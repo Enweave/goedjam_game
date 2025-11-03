@@ -68,14 +68,16 @@ func _on_ready_timeout():
 	viewport_container.set_visible(true)
 	get_tree().get_root().move_child(viewport_container, 0)
 	scene_changed.emit(current_scene)
-	ingame_ui.visible = current_scene.show_ingame_ui
+	if current_scene is SceneBase:
+		ingame_ui.visible = current_scene.show_ingame_ui
 
 
 func set_current_scene(in_scene: SceneBase) -> void:
 	current_scene = in_scene
 	current_scene.call_deferred("reparent", viewport, true)
 	scene_changed.emit(current_scene)
-	ingame_ui.visible = current_scene.show_ingame_ui
+	if current_scene is SceneBase:
+		ingame_ui.visible = current_scene.show_ingame_ui
 
 
 func get_current_scene() -> SceneBase:
