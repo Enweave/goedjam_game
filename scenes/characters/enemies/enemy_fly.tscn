@@ -1,10 +1,11 @@
-[gd_scene load_steps=20 format=3 uid="uid://babdtj2l3mcbc"]
+[gd_scene load_steps=21 format=3 uid="uid://babdtj2l3mcbc"]
 
 [ext_resource type="Script" uid="uid://q0xpdnen5hge" path="res://scenes/characters/common/enemy_base.gd" id="1_3hhsn"]
 [ext_resource type="PackedScene" uid="uid://dudqxy6dbjysm" path="res://scenes/characters/common/character_collision_shape_3d.tscn" id="2_t1c0o"]
 [ext_resource type="Script" uid="uid://xjyowidksewx" path="res://core/combat/health_component.gd" id="3_osqwf"]
-[ext_resource type="Script" uid="uid://s7b4gwpsxxwk" path="res://scenes/characters/common/ai_controller.gd" id="4_banef"]
+[ext_resource type="Script" uid="uid://cldh7nhnubd00" path="res://scenes/characters/common/melee_ai_controller.gd" id="4_oungl"]
 [ext_resource type="Script" uid="uid://htts4jxy8uka" path="res://scenes/characters/common/enemy_sprite_handle.gd" id="5_d6hip"]
+[ext_resource type="PackedScene" uid="uid://ccbrqaw7h8342" path="res://scenes/characters/common/melee_weapon.tscn" id="5_sfv44"]
 [ext_resource type="Texture2D" uid="uid://cbh57wp12k3w6" path="res://assets/sprites/enemy_fly_sheet.png" id="6_da7om"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_qyrn1"]
@@ -101,6 +102,13 @@ metadata/_custom_type_script = "uid://d38vogc71un30"
 script = ExtResource("3_osqwf")
 metadata/_custom_type_script = "uid://xjyowidksewx"
 
+[node name="AIController" type="Node3D" parent="." node_paths=PackedStringArray("weapon", "nav_agent", "sprite_hanlde")]
+script = ExtResource("4_oungl")
+weapon = NodePath("../BodyRoot/MeleeWeapon")
+nav_agent = NodePath("../NavigationAgent3D")
+sprite_hanlde = NodePath("../EnemySpriteHandle")
+metadata/_custom_type_script = "uid://s7b4gwpsxxwk"
+
 [node name="BodyRoot" type="Node3D" parent="."]
 unique_name_in_owner = true
 
@@ -115,15 +123,12 @@ transform = Transform3D(-0.625961, 8.74228e-08, -1.84277e-15, 0, -4.37114e-08, -
 visible = false
 mesh = SubResource("PrismMesh_uo6so")
 
+[node name="MeleeWeapon" parent="BodyRoot" instance=ExtResource("5_sfv44")]
+
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
 avoidance_enabled = true
 radius = 1.0
 use_3d_avoidance = true
-
-[node name="AIController" type="Node3D" parent="." node_paths=PackedStringArray("nav_agent")]
-script = ExtResource("4_banef")
-nav_agent = NodePath("../NavigationAgent3D")
-metadata/_custom_type_script = "uid://s7b4gwpsxxwk"
 
 [node name="EnemySpriteHandle" type="Node3D" parent="."]
 transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0)
