@@ -5,11 +5,13 @@ const FADE_DURATION: float = 0.5
 var current_scene: SceneBase
 var viewport_container: SubViewportContainer
 var viewport: SubViewport
-var pause_menu: Control
+var pause_menu: SettingMenu
 var last_increment_index: int = 0
 
 var ingame_ui_scene: PackedScene = preload("res://scenes/UI/ingame_ui.tscn")
 var ingame_ui: IngameUI
+
+var _paused = false
 
 signal scene_changed(new_scene: SceneBase)
 
@@ -44,21 +46,22 @@ func _ready() -> void:
 	shader_material.set_shader_parameter("vignette_radius", 0.807)
 
 
-
 	get_tree().create_timer(0.3).timeout.connect(_on_ready_timeout)
 	viewport.connect("size_changed", _on_viewport_size_changed)
 
-#	var pause_menu_scene: PackedScene = preload("res://Scenes/Common/settings_menu.tscn")
-#	pause_menu = pause_menu_scene.instantiate()
-#	pause_menu.process_mode = Node.PROCESS_MODE_ALWAYS
-#	pause_menu.visible = false
-#
-#	await get_tree().get_root().call_deferred("add_child", pause_menu)
+
 
 	ingame_ui = ingame_ui_scene.instantiate()
 	ingame_ui.z_index = 100
 	ingame_ui.process_mode = Node.PROCESS_MODE_ALWAYS
-	await get_tree().get_root().call_deferred("add_child", ingame_ui)
+	await viewport.call_deferred("add_child", ingame_ui)
+
+	var pause_menu_scene: PackedScene = preload("res://scenes/UI/SettingMenu.tscn")
+	pause_menu = pause_menu_scene.instantiate()
+	pause_menu.process_mode = Node.PROCESS_MODE_ALWAYS
+	pause_menu.set_visibility(false)
+
+	await viewport.call_deferred("add_child", pause_menu)
 
 
 func _on_viewport_size_changed() -> void:
@@ -97,6 +100,7 @@ func load_scene(scene_type: SceneMapping.SceneType) -> void:
 	tween.set_pause_mode(Tween.TWEEN_PAUSE_PROCESS)
 	tween.tween_property(viewport_container, 'modulate:a', 0, FADE_DURATION)
 	get_tree().paused = true
+	_paused = true
 	await tween.finished
 
 	if current_scene == null:
@@ -107,6 +111,7 @@ func load_scene(scene_type: SceneMapping.SceneType) -> void:
 	await viewport.call_deferred('add_child', level)
 
 	get_tree().paused = false
+	_paused = false
 	tween = get_tree().create_tween()
 	tween.tween_property(viewport_container, 'modulate:a', 1, FADE_DURATION)
 
@@ -117,12 +122,18 @@ func handle_input_pause() -> void:
 
 
 func pause_game(pause: bool):
-	# pause_menu.visible = pause
-	if pause:
-		get_tree().paused = true
+	_paused = pause
+	pause_menu.set_visibility(_paused)
+	if current_scene is SceneBase:
+		if pause:
+			current_scene.process_mode = Node.PROCESS_MODE_DISABLED
+		else:
+			current_scene.process_mode = Node.PROCESS_MODE_INHERIT
+		current_scene.visible = not pause
 	else:
-		get_tree().paused = false
+		get_tree().paused = _paused
+
 
 
 func toggle_pause_game() -> void:
-	pause_game(not get_tree().paused)
+	pause_game(not _paused)

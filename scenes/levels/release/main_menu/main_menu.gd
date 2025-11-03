@@ -10,3 +10,7 @@ func _ready() -> void:
 	)
 	#this line too. Call me coder ty.
 	animated_sprite.play("default")
+
+	$%SettingsButton.pressed.connect(func() -> void:
+		SceneManagerAutoload.pause_game(true)
+	)

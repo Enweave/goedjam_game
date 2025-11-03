@@ -420,6 +420,7 @@ unique_name_in_owner = true
 layout_mode = 2
 text = "START"
 
-[node name="StartGameButton2" type="Button" parent="MarginContainer/VBoxContainer"]
+[node name="SettingsButton" type="Button" parent="MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 text = "SETTINGS"
