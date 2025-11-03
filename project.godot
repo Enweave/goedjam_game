@@ -13,6 +13,7 @@ config_version=5
 config/name="goedjam"
 run/main_scene="uid://dilbmxwe8dgj6"
 config/features=PackedStringArray("4.4", "GL Compatibility")
+boot_splash/image="uid://d3fvjp1ba1wem"
 config/icon="res://icon.svg"
 
 [autoload]
