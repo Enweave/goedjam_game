@@ -17,5 +17,8 @@ func _on_death() -> void:
 	character_controller.process_mode = Node.PROCESS_MODE_DISABLED
 	_death_queued = true
 	set_movement_enabled(false)
+	self.collision_layer = 0
+	self.collision_mask = 0
+
 	OnCharacterDied.emit(self)
 	get_tree().create_timer(DEATH_TIMEOUT_SECONDS).timeout.connect(queue_free)

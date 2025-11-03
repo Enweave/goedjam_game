@@ -437,29 +437,29 @@ transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, -20, 0.87, -34.986)
 transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 12.698, 0.8, -13.1951)
 
 [node name="EnemySpawner" parent="." groups=["EnemySpawners"] instance=ExtResource("36_tr3r8")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -34.0335, 4.60182, 76.444)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -34.0335, 2, 76.444)
 
 [node name="EnemySpawner2" parent="." groups=["EnemySpawners"] instance=ExtResource("36_tr3r8")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27.5941, 4.60182, 76.444)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27.5941, 2, 76.444)
 
 [node name="EnemySpawner3" parent="." groups=["EnemySpawners"] instance=ExtResource("36_tr3r8")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -42.4403, 4.60182, -24.4439)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -42.4403, 2, -24.4439)
 enemy_scenes = Array[PackedScene]([ExtResource("37_rn05h")])
 
 [node name="EnemySpawner7" parent="." groups=["EnemySpawners"] instance=ExtResource("36_tr3r8")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.4481, 4.60182, -42.3588)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.4481, 2, -42.3588)
 enemy_scenes = Array[PackedScene]([ExtResource("37_rn05h"), ExtResource("38_8dvv6"), ExtResource("39_nyk2a")])
 
 [node name="EnemySpawner4" parent="." groups=["EnemySpawners"] instance=ExtResource("36_tr3r8")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27.3503, 4.60182, -31.5703)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27.3503, 2, -31.5703)
 enemy_scenes = Array[PackedScene]([ExtResource("39_nyk2a"), ExtResource("38_8dvv6"), ExtResource("40_k4egv"), ExtResource("37_rn05h")])
 
 [node name="EnemySpawner5" parent="." groups=["EnemySpawners"] instance=ExtResource("36_tr3r8")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -53.5893, 4.60182, 10.7578)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -53.5893, 2, 10.7578)
 enemy_scenes = Array[PackedScene]([ExtResource("37_rn05h"), ExtResource("39_nyk2a"), ExtResource("37_rn05h"), ExtResource("37_rn05h")])
 
 [node name="EnemySpawner6" parent="." groups=["EnemySpawners"] instance=ExtResource("36_tr3r8")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40.0444, 4.60182, 33.5029)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40.0444, 2, 33.5029)
 enemy_scenes = Array[PackedScene]([ExtResource("37_rn05h"), ExtResource("39_nyk2a"), ExtResource("38_8dvv6"), ExtResource("38_8dvv6")])
 
 [node name="WaveManager" parent="." instance=ExtResource("37_5vhpe")]

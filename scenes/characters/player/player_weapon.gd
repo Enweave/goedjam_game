@@ -21,6 +21,10 @@ var player_controller: PlayerController = null
 var TracerScene : PackedScene
 var scene_manager: SceneManager = SceneManagerAutoload
 
+
+var tracer_pool: Array[Tracer] = []
+var tracer_pool_size: int = 20
+
 func _ready() -> void:
 	super._ready()
 	TracerScene = preload("res://scenes/visuals/tracer.tscn")
@@ -61,6 +65,16 @@ func _on_activation():
 	player_weapon_sprite_handle.fire()
 
 
+
+func get_free_tracer_from_pool() -> Tracer:
+	for tracer in tracer_pool:
+		if not tracer.busy:
+			return tracer
+	return null
+
+func can_add_tracer_to_pool() -> bool:
+	return tracer_pool.size() < tracer_pool_size
+
 func _fire() -> void:
 	PlayerStateAutoload.notify_from_weapon(self)
 	var origin: Vector3 = global_position
@@ -94,11 +108,20 @@ func _fire() -> void:
 		if hit.size() > 0:
 			tracer_to = hit.get("position")
 
-		var tracer: Tracer = TracerScene.instantiate()
-		var from: Vector3 = player_weapon_sprite_handle.get_hotspot_position()
-		if tracer and tracer.has_method("init"):
+		var tracer: Tracer = get_free_tracer_from_pool()
+		var reused_tracer: bool = true
+		if tracer == null and can_add_tracer_to_pool():
+			reused_tracer = false
+			tracer = TracerScene.instantiate()
+
+		if tracer:
+			var from: Vector3 = player_weapon_sprite_handle.get_hotspot_position()
 			tracer.init(from, tracer_to)
-			scene_manager.get_current_scene().add_child(tracer)
+			if reused_tracer:
+				tracer.do_trace()
+			else:
+				tracer_pool.append(tracer)
+				scene_manager.get_current_scene().add_child(tracer)
 
 		if hit.size() > 0:
 			var body = hit.get("collider")

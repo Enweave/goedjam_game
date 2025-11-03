@@ -97,7 +97,7 @@ func _aim_update_to_controller_aim_direction(delta):
 	)
 
 func _physics_process(delta):
-	if not is_on_floor():
+	if not is_on_floor() and _movement_enabled:
 		velocity += get_gravity() * delta
 
 	_physics_process_method.call(delta)

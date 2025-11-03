@@ -11,11 +11,15 @@ class_name Tracer
 var _in_origin: Vector3
 var _in_to: Vector3
 
-var timer : SceneTreeTimer
+var timer : Timer
 
 var beam: MeshInstance3D
+var busy: bool = false
 
-func _ready() -> void:
+func do_trace() -> void:
+	self.visible = true
+	busy = true
+	timer.start()
 	beam = %Beam
 	# Place tracer at origin and build a thin mesh towards "to"
 	global_transform.origin = _in_origin
@@ -53,8 +57,15 @@ func _ready() -> void:
 	tween.tween_property(beam, "scale:x", 0.0, lifetime)
 	tween.parallel().tween_property(beam, "scale:y", 0.0, lifetime)
 	tween.parallel().tween_property(mat, "albedo_color:a", 0.0, lifetime)
-	timer = get_tree().create_timer(lifetime)
+
+func _ready() -> void:
+
+	timer = Timer.new()
+	timer.wait_time = lifetime
+	timer.one_shot = true
+	add_child(timer)
 	timer.timeout.connect(_on_timer_timeout)
+	do_trace()
 
 
 func init(in_origin: Vector3, in_to: Vector3) -> void:
@@ -63,4 +74,5 @@ func init(in_origin: Vector3, in_to: Vector3) -> void:
 
 
 func _on_timer_timeout() -> void:
-	queue_free()
+	busy = false
+	self.visible = false

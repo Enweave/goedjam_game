@@ -356,7 +356,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"death",
-"speed": 10.0
+"speed": 20.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -393,6 +393,7 @@ animations = [{
 
 [node name="EnemyBase" type="CharacterBody3D" node_paths=PackedStringArray("health_component")]
 script = ExtResource("1_2mphp")
+DEATH_TIMEOUT_SECONDS = 2.0
 health_component = NodePath("HealthComponent")
 BASE_MOVEMENT_SPEED = 9.5
 metadata/_custom_type_script = "uid://d38vogc71un30"
@@ -448,8 +449,10 @@ transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0.0317801, 0.352439, 0)
 billboard = 1
 texture_filter = 0
 sprite_frames = SubResource("SpriteFrames_2dhmu")
+animation = &"death"
 autoplay = "default"
-frame_progress = 0.631829
+frame = 28
+frame_progress = 1.0
 
 [node name="ShadowCaster" type="CSGSphere3D" parent="EnemySpriteHandle"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.138763, 0.0946793)
