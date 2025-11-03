@@ -1,7 +1,7 @@
 extends Node3D
 
 
-@export var wave_delay_length: float = 10.0
+@export var wave_delay_length: float = 5.0
 
 var spawners: Array[EnemySpawner] = []
 var spawned_characters: Array[CharacterWithHealth] = []
@@ -33,10 +33,10 @@ func get_number_to_spawn(_wave_number: int) -> int:
 func _on_spawn_timer_timeout() -> void:
 	if spawned_characters.size() == 0:
 		PlayerStateAutoload.increase_wave()
-		print_debug("Wave ", PlayerStateAutoload.current_wave, " starting.")
 		for spawner in spawners:
 			for i in get_number_to_spawn(PlayerStateAutoload.current_wave):
-				var _instance: CharacterWithHealth = spawner.spawn_enemy(PlayerStateAutoload.current_wave)
+				var _instance: CharacterWithHealth
+				_instance = await spawner.spawn_enemy(PlayerStateAutoload.current_wave)
 				spawned_characters.append(_instance)
 				_instance.OnCharacterDied.connect(_on_spawned_character_death)
 		PlayerStateAutoload.notify_wave_started()
