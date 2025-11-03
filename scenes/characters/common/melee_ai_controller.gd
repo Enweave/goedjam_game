@@ -14,6 +14,13 @@ func _ready() -> void:
 		weapon.OnActivation.connect(_on_weapon_activation)
 		weapon.OnCooldownPassed.connect(_on_weapon_target_in_range_changed)
 
+		OnControlledCharacterDied.connect(_on_controlled_character_died)
+
+
+func _on_controlled_character_died() -> void:
+	weapon.OnTargetInRangeChanged.disconnect(_on_weapon_target_in_range_changed)
+	weapon.OnActivation.disconnect(_on_weapon_activation)
+	weapon.OnCooldownPassed.disconnect(_on_weapon_target_in_range_changed)
 
 func _on_weapon_target_in_range_changed() -> void:
 	if weapon.target_in_range:

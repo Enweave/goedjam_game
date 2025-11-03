@@ -1,0 +1,53 @@
+[gd_scene load_steps=10 format=3 uid="uid://b0s7wxp8mx7nq"]
+
+[ext_resource type="Script" uid="uid://chgi8s5jhb48u" path="res://core/scene_management/scene_base.gd" id="1_a1osm"]
+[ext_resource type="PackedScene" uid="uid://p6r7g7l6bfnd" path="res://scenes/characters/player/player.tscn" id="2_limtx"]
+[ext_resource type="Texture2D" uid="uid://bx5rm5utf27oq" path="res://assets/textures/black/texture_01.png" id="3_7rg7d"]
+[ext_resource type="PackedScene" uid="uid://b3yffow25eg1p" path="res://scenes/environments/default_environment.tscn" id="4_xmnyv"]
+[ext_resource type="PackedScene" uid="uid://d1ovxarhjxn4q" path="res://scenes/characters/enemies/enemy_worm.tscn" id="5_cx7qy"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_52kye"]
+size = Vector2(20, 20)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yp2xm"]
+albedo_texture = ExtResource("3_7rg7d")
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_yp2xm"]
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_koekj"]
+vertices = PackedVector3Array(-49.5, 0.369527, -1.5, -6.5, 0.369527, -1.5, -6.5, 0.369527, -3.5, -5.25, 0.369527, -3.75, -5.25, 0.369527, -49.5, -49.5, 0.369527, -49.5, -4.25, 0.369527, -3.5, 49.5, 0.369527, -2.25, 49.5, 0.369527, -49.5, -4.25, 0.369527, -2, -4.25, 0.369527, 1, 49.5, 0.369527, 1.25, -49.5, 0.369527, 0.5, -6.5, 0.369527, 0.5, -6.5, 0.369527, 2.5, -5.25, 0.369527, 2.75, -49.5, 0.369527, 49.5, -5.25, 0.369527, 49.5, -4.25, 0.369527, 2.5, 49.5, 0.369527, 49.5)
+polygons = [PackedInt32Array(2, 1, 0), PackedInt32Array(2, 0, 3), PackedInt32Array(3, 0, 4), PackedInt32Array(4, 0, 5), PackedInt32Array(3, 4, 6), PackedInt32Array(6, 4, 8), PackedInt32Array(6, 8, 7), PackedInt32Array(7, 9, 6), PackedInt32Array(9, 7, 10), PackedInt32Array(10, 7, 11), PackedInt32Array(0, 1, 12), PackedInt32Array(12, 1, 13), PackedInt32Array(12, 13, 14), PackedInt32Array(14, 15, 12), PackedInt32Array(12, 15, 17), PackedInt32Array(12, 17, 16), PackedInt32Array(15, 18, 17), PackedInt32Array(17, 18, 19), PackedInt32Array(19, 18, 11), PackedInt32Array(18, 10, 11)]
+
+[node name="Test" type="Node3D"]
+script = ExtResource("1_a1osm")
+
+[node name="Player" parent="." instance=ExtResource("2_limtx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.67134, 0.93381, 0)
+
+[node name="Floor" type="MeshInstance3D" parent="."]
+mesh = SubResource("PlaneMesh_52kye")
+surface_material_override/0 = SubResource("StandardMaterial3D_yp2xm")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Floor"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/StaticBody3D"]
+shape = SubResource("WorldBoundaryShape3D_yp2xm")
+
+[node name="DefaultEnvironment" parent="." instance=ExtResource("4_xmnyv")]
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
+navigation_mesh = SubResource("NavigationMesh_koekj")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="NavigationRegion3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+visible = false
+use_collision = true
+size = Vector3(100, 1, 100)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="NavigationRegion3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.43385, 0.140462, -0.480322)
+use_collision = true
+size = Vector3(1, 3.54187, 5.31494)
+
+[node name="EnemyBase" parent="." instance=ExtResource("5_cx7qy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.27353, 2.17261, 3.78678)

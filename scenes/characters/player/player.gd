@@ -79,4 +79,5 @@ func _aim_update_from_mouse(delta):
 
 func _on_death() -> void:
 	set_movement_enabled(false)
-	print_debug("PLAYER DEAD!")
+	character_controller.OnControlledCharacterDied.emit()
+	PlayerStateAutoload.notify_player_died()

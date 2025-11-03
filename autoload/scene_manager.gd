@@ -46,7 +46,7 @@ func _ready() -> void:
 
 
 	get_tree().create_timer(0.3).timeout.connect(_on_ready_timeout)
-	viewport.connect("size_changed", Callable(self, "_on_viewport_size_changed"))
+	viewport.connect("size_changed", _on_viewport_size_changed)
 
 #	var pause_menu_scene: PackedScene = preload("res://Scenes/Common/settings_menu.tscn")
 #	pause_menu = pause_menu_scene.instantiate()
@@ -68,12 +68,14 @@ func _on_ready_timeout():
 	viewport_container.set_visible(true)
 	get_tree().get_root().move_child(viewport_container, 0)
 	scene_changed.emit(current_scene)
+	ingame_ui.visible = current_scene.show_ingame_ui
 
 
 func set_current_scene(in_scene: SceneBase) -> void:
 	current_scene = in_scene
 	current_scene.call_deferred("reparent", viewport, true)
 	scene_changed.emit(current_scene)
+	ingame_ui.visible = current_scene.show_ingame_ui
 
 
 func get_current_scene() -> SceneBase:
@@ -85,6 +87,9 @@ func load_scene(scene_type: SceneMapping.SceneType) -> void:
 	if scene_path == "":
 		push_error("FlowController: load_scene: Scene path is empty for scene type: " + str(scene_type))
 		return
+
+	if scene_type == SceneMapping.SceneType.GAME:
+		PlayerStateAutoload.reset()
 
 	var tween: Tween = get_tree().create_tween()
 	tween.set_pause_mode(Tween.TWEEN_PAUSE_PROCESS)
@@ -107,7 +112,6 @@ func load_scene(scene_type: SceneMapping.SceneType) -> void:
 func handle_input_pause() -> void:
 	toggle_pause_game()
 	print_debug('FlowController: handle_pause_input')
-
 
 
 func pause_game(pause: bool):

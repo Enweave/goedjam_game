@@ -1,0 +1,65 @@
+[gd_resource type="Theme" load_steps=7 format=3 uid="uid://b38jgwqg4syy5"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_td2cv"]
+content_margin_left = 20.0
+content_margin_top = 5.0
+content_margin_right = 20.0
+content_margin_bottom = 5.0
+bg_color = Color(0.117647, 0.117647, 0.117647, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.839216, 0.572549, 0.337255, 1)
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sintc"]
+content_margin_left = 20.0
+content_margin_top = 5.0
+content_margin_right = 20.0
+content_margin_bottom = 5.0
+bg_color = Color(0.117647, 0.117647, 0.117647, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.839216, 0.572549, 0.337255, 1)
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_01lun"]
+content_margin_left = 20.0
+content_margin_top = 5.0
+content_margin_right = 20.0
+content_margin_bottom = 5.0
+bg_color = Color(0.117647, 0.117647, 0.117647, 1)
+border_width_bottom = 1
+border_color = Color(0.839216, 0.572549, 0.337255, 1)
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1iity"]
+content_margin_left = 20.0
+content_margin_top = 5.0
+content_margin_right = 20.0
+content_margin_bottom = 5.0
+bg_color = Color(0.513726, 0.137255, 0.196078, 1)
+border_width_bottom = 1
+border_color = Color(0.839216, 0.572549, 0.337255, 1)
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nlibn"]
+bg_color = Color(0.160784, 0.160784, 0.160784, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_oxrmg"]
+bg_color = Color(0.403922, 0.627451, 0.317647, 1)
+
+[resource]
+Button/styles/focus = SubResource("StyleBoxFlat_td2cv")
+Button/styles/hover = SubResource("StyleBoxFlat_sintc")
+Button/styles/normal = SubResource("StyleBoxFlat_01lun")
+Button/styles/pressed = SubResource("StyleBoxFlat_1iity")
+MarginContainer/constants/margin_bottom = 20
+MarginContainer/constants/margin_left = 20
+MarginContainer/constants/margin_right = 20
+MarginContainer/constants/margin_top = 20
+ProgressBar/styles/background = SubResource("StyleBoxFlat_nlibn")
+ProgressBar/styles/fill = SubResource("StyleBoxFlat_oxrmg")

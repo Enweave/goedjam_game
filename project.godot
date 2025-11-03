@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="goedjam"
-run/main_scene="uid://6c6j7f3b6d72"
+run/main_scene="uid://dilbmxwe8dgj6"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 config/icon="res://icon.svg"
 
@@ -26,6 +26,11 @@ PlayerControllerAutoload="*res://autoload/player_controller.gd"
 window/size/viewport_width=800
 window/size/viewport_height=600
 window/stretch/mode="canvas_items"
+
+[gui]
+
+theme/custom="uid://b38jgwqg4syy5"
+theme/custom_font="uid://ye576p34uutu"
 
 [input]
 
@@ -94,5 +99,6 @@ input_Fire={
 
 [rendering]
 
+textures/canvas_textures/default_texture_filter=0
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"

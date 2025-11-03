@@ -40,6 +40,14 @@ func _ready() -> void:
 
 	PlayerStateAutoload.notify_from_weapon(self)
 
+	player_controller.OnControlledCharacterDied.connect(_on_controlled_character_died)
+
+
+func _on_controlled_character_died() -> void:
+	print("PlayerWeapon: Controlled character died, disconnecting signals.")
+	player_controller.OnFeatureActivated.disconnect(fire)
+	player_controller.OnFeatureDeactivated.disconnect(deactivate)
+
 
 func _on_cooldown_passed():
 	if current_ammo <= 0:

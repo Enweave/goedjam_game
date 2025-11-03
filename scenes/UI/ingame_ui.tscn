@@ -1,17 +1,10 @@
 [gd_scene load_steps=6 format=3 uid="uid://cadcjjrms0h8v"]
 
 [ext_resource type="Script" uid="uid://dqgmxlxdr33ur" path="res://scenes/UI/ingame_ui.gd" id="1_rjfv6"]
+[ext_resource type="Theme" uid="uid://b38jgwqg4syy5" path="res://scenes/UI/default_theme.tres" id="2_0lrgu"]
 [ext_resource type="PackedScene" uid="uid://br1lhlfgu6fcq" path="res://scenes/UI/bullet_widget.tscn" id="2_nlibn"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nlibn"]
-bg_color = Color(0.160784, 0.160784, 0.160784, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_oxrmg"]
-bg_color = Color(0.403922, 0.627451, 0.317647, 1)
-
-[sub_resource type="Theme" id="Theme_0lrgu"]
-ProgressBar/styles/background = SubResource("StyleBoxFlat_nlibn")
-ProgressBar/styles/fill = SubResource("StyleBoxFlat_oxrmg")
+[ext_resource type="Texture2D" uid="uid://oh7npishdftp" path="res://assets/nineslice.png" id="4_1p52g"]
+[ext_resource type="PackedScene" uid="uid://cx8bdf1u64af" path="res://scenes/UI/custom_button.tscn" id="5_1p52g"]
 
 [node name="IngameUi" type="Control"]
 layout_mode = 3
@@ -29,10 +22,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 10
-theme_override_constants/margin_bottom = 10
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
 layout_mode = 2
@@ -45,7 +34,7 @@ unique_name_in_owner = true
 custom_minimum_size = Vector2(100, 14)
 layout_mode = 2
 size_flags_horizontal = 0
-theme = SubResource("Theme_0lrgu")
+theme = ExtResource("2_0lrgu")
 value = 76.88
 show_percentage = false
 
@@ -74,3 +63,62 @@ layout_mode = 2
 
 [node name="TextureRect7" parent="MarginContainer/VBoxContainer/VBoxContainer/AmmoContainer" instance=ExtResource("2_nlibn")]
 layout_mode = 2
+
+[node name="GameOverWidget" type="ColorRect" parent="."]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 780.0
+offset_bottom = 580.0
+color = Color(0.117647, 0.117647, 0.117647, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="GameOverWidget"]
+layout_mode = 2
+offset_right = 760.0
+offset_bottom = 560.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GameOverWidget/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="GameOverWidget/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.858824, 0.854902, 0.854902, 1)
+theme_override_font_sizes/font_size = 70
+text = "GAME OVER"
+horizontal_alignment = 1
+
+[node name="NinePatchRect" type="NinePatchRect" parent="GameOverWidget/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+texture = ExtResource("4_1p52g")
+patch_margin_left = 3
+patch_margin_top = 3
+patch_margin_right = 3
+patch_margin_bottom = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="GameOverWidget/MarginContainer/VBoxContainer/NinePatchRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="GridContainer" type="GridContainer" parent="GameOverWidget/MarginContainer/VBoxContainer/NinePatchRect/MarginContainer"]
+layout_mode = 2
+columns = 2
+
+[node name="Label" type="Label" parent="GameOverWidget/MarginContainer/VBoxContainer/NinePatchRect/MarginContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "stats go here"
+
+[node name="MainMenuButton" parent="GameOverWidget/MarginContainer/VBoxContainer" instance=ExtResource("5_1p52g")]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+text = "MAIN MENU"

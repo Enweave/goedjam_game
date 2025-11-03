@@ -21,4 +21,5 @@ func _on_damage(_amount: float) -> void:
 
 func _on_death() -> void:
 	set_movement_enabled(false)
+	character_controller.OnControlledCharacterDied.emit()
 	self.call_deferred("queue_free")
