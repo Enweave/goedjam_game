@@ -43,6 +43,7 @@ lifetime = 3.0
 transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 0)
 billboard = 1
 sprite_frames = SubResource("SpriteFrames_3fo8w")
+autoplay = "default"
 frame_progress = 0.814863
 
 [node name="DamageArea" type="Area3D" parent="."]

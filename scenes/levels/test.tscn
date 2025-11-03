@@ -1,10 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://dtee8ww7fswr3"]
+[gd_scene load_steps=11 format=3 uid="uid://dtee8ww7fswr3"]
 
 [ext_resource type="PackedScene" uid="uid://p6r7g7l6bfnd" path="res://scenes/characters/player/player.tscn" id="1_52kye"]
 [ext_resource type="Texture2D" uid="uid://bx5rm5utf27oq" path="res://assets/textures/black/texture_01.png" id="1_8153q"]
 [ext_resource type="Script" uid="uid://chgi8s5jhb48u" path="res://core/scene_management/scene_base.gd" id="1_yp2xm"]
 [ext_resource type="PackedScene" uid="uid://b3yffow25eg1p" path="res://scenes/environments/default_environment.tscn" id="4_uyl1e"]
 [ext_resource type="PackedScene" uid="uid://d18l8pwphmxtp" path="res://scenes/characters/enemies/enemy_eyebat.tscn" id="5_7115g"]
+[ext_resource type="PackedScene" uid="uid://dcdt31u5wcw81" path="res://scenes/characters/enemies/enemy_orb.tscn" id="6_koekj"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_52kye"]
 size = Vector2(20, 20)
@@ -51,3 +52,6 @@ size = Vector3(1, 3.54187, 5.31494)
 
 [node name="EnemyBase" parent="." instance=ExtResource("5_7115g")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.42751, 1.3726, 5.55594)
+
+[node name="EnemyBase2" parent="." instance=ExtResource("6_koekj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.62255, 1.4378, 8.63599)
