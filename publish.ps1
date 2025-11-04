@@ -2,7 +2,7 @@
 $BUTLER_PATH = "$ENV:AppData\itch\apps\butler\butler.exe"
 $GODOT_PATH = "C:/Program Files (x86)/Steam/steamapps/common/Godot Engine/godot.windows.opt.tools.64.exe"
 $ITCH_USER = "enweave"
-$ITCH_GAME = "buckshotgrandpa"
+$ITCH_GAME = "buckshotgrandpa-stage"
 $ITCH_CHANNEL = "web"
 $GODOT_TEMPLATE = "`"Web`""
 $EXPORT = "--export-release" # "--export-debug" or "--export-release"
