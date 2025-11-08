@@ -1,12 +1,12 @@
 [gd_scene load_steps=25 format=3 uid="uid://23qo3xt1rrfc"]
 
-[ext_resource type="Script" uid="uid://q0xpdnen5hge" path="res://scenes/characters/common/enemy_base.gd" id="1_sxu4v"]
-[ext_resource type="PackedScene" uid="uid://dudqxy6dbjysm" path="res://scenes/characters/common/character_collision_shape_3d.tscn" id="2_5xb5p"]
-[ext_resource type="Script" uid="uid://xjyowidksewx" path="res://core/combat/health_component.gd" id="3_mb80d"]
-[ext_resource type="Script" uid="uid://cldh7nhnubd00" path="res://scenes/characters/common/melee_ai_controller.gd" id="4_guc8d"]
-[ext_resource type="PackedScene" uid="uid://ccbrqaw7h8342" path="res://scenes/characters/common/melee_weapon.tscn" id="5_nobd2"]
-[ext_resource type="Script" uid="uid://htts4jxy8uka" path="res://scenes/characters/common/enemy_sprite_handle.gd" id="6_vhvx0"]
-[ext_resource type="Texture2D" uid="uid://o0yceekhvbaj" path="res://assets/sprites/enemy_worm03.png" id="7_sxu4v"]
+[ext_resource type="Script" uid="uid://q0xpdnen5hge" path="res://scenes/characters/common/enemy_base.gd" id="1_xynl8"]
+[ext_resource type="PackedScene" uid="uid://dudqxy6dbjysm" path="res://scenes/characters/common/character_collision_shape_3d.tscn" id="2_msac4"]
+[ext_resource type="Script" uid="uid://xjyowidksewx" path="res://core/combat/health_component.gd" id="3_aodtu"]
+[ext_resource type="Script" uid="uid://cldh7nhnubd00" path="res://scenes/characters/common/melee_ai_controller.gd" id="4_18air"]
+[ext_resource type="PackedScene" uid="uid://ccbrqaw7h8342" path="res://scenes/characters/common/melee_weapon.tscn" id="5_7r01p"]
+[ext_resource type="Script" uid="uid://htts4jxy8uka" path="res://scenes/characters/common/enemy_sprite_handle.gd" id="6_qwfk5"]
+[ext_resource type="Texture2D" uid="uid://o0yceekhvbaj" path="res://assets/sprites/enemy_worm03.png" id="7_4yut3"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_qyrn1"]
 
@@ -16,55 +16,55 @@ albedo_color = Color(1, 0.196078, 0, 1)
 [sub_resource type="PrismMesh" id="PrismMesh_uo6so"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5xb5p"]
-atlas = ExtResource("7_sxu4v")
+atlas = ExtResource("7_4yut3")
 region = Rect2(448, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_mb80d"]
-atlas = ExtResource("7_sxu4v")
+atlas = ExtResource("7_4yut3")
 region = Rect2(512, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_guc8d"]
-atlas = ExtResource("7_sxu4v")
+atlas = ExtResource("7_4yut3")
 region = Rect2(576, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_nobd2"]
-atlas = ExtResource("7_sxu4v")
+atlas = ExtResource("7_4yut3")
 region = Rect2(640, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vhvx0"]
-atlas = ExtResource("7_sxu4v")
+atlas = ExtResource("7_4yut3")
 region = Rect2(704, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dl8mk"]
-atlas = ExtResource("7_sxu4v")
+atlas = ExtResource("7_4yut3")
 region = Rect2(768, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fbfl4"]
-atlas = ExtResource("7_sxu4v")
+atlas = ExtResource("7_4yut3")
 region = Rect2(832, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_l6y8h"]
-atlas = ExtResource("7_sxu4v")
+atlas = ExtResource("7_4yut3")
 region = Rect2(896, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_yqajk"]
-atlas = ExtResource("7_sxu4v")
+atlas = ExtResource("7_4yut3")
 region = Rect2(960, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ed5il"]
-atlas = ExtResource("7_sxu4v")
+atlas = ExtResource("7_4yut3")
 region = Rect2(128, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ybnq7"]
-atlas = ExtResource("7_sxu4v")
+atlas = ExtResource("7_4yut3")
 region = Rect2(192, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jlxmd"]
-atlas = ExtResource("7_sxu4v")
+atlas = ExtResource("7_4yut3")
 region = Rect2(256, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ibgod"]
-atlas = ExtResource("7_sxu4v")
+atlas = ExtResource("7_4yut3")
 region = Rect2(320, 0, 64, 64)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_2dhmu"]
@@ -120,21 +120,21 @@ animations = [{
 }]
 
 [node name="EnemyBase" type="CharacterBody3D" node_paths=PackedStringArray("health_component")]
-script = ExtResource("1_sxu4v")
+script = ExtResource("1_xynl8")
 health_component = NodePath("HealthComponent")
 BASE_MOVEMENT_SPEED = 5.0
 metadata/_custom_type_script = "uid://d38vogc71un30"
 
-[node name="CollisionShape3D" parent="." instance=ExtResource("2_5xb5p")]
+[node name="CollisionShape3D" parent="." instance=ExtResource("2_msac4")]
 
 [node name="HealthComponent" type="Node" parent="."]
-script = ExtResource("3_mb80d")
+script = ExtResource("3_aodtu")
 BASE_HEALTH = 3.0
 BASE_HEALTH_REGEN_RATE = 0.0
 metadata/_custom_type_script = "uid://xjyowidksewx"
 
 [node name="AIController" type="Node3D" parent="." node_paths=PackedStringArray("weapon", "nav_agent", "sprite_hanlde")]
-script = ExtResource("4_guc8d")
+script = ExtResource("4_18air")
 weapon = NodePath("../BodyRoot/MeleeWeapon")
 nav_agent = NodePath("../NavigationAgent3D")
 sprite_hanlde = NodePath("../EnemySpriteHandle")
@@ -154,7 +154,7 @@ transform = Transform3D(-0.625961, 8.74228e-08, -1.84277e-15, 0, -4.37114e-08, -
 visible = false
 mesh = SubResource("PrismMesh_uo6so")
 
-[node name="MeleeWeapon" parent="BodyRoot" instance=ExtResource("5_nobd2")]
+[node name="MeleeWeapon" parent="BodyRoot" instance=ExtResource("5_7r01p")]
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
 avoidance_enabled = true
@@ -163,7 +163,7 @@ use_3d_avoidance = true
 
 [node name="EnemySpriteHandle" type="Node3D" parent="."]
 transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0)
-script = ExtResource("6_vhvx0")
+script = ExtResource("6_qwfk5")
 
 [node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="EnemySpriteHandle"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.114521, 0)
@@ -171,7 +171,7 @@ billboard = 1
 texture_filter = 0
 sprite_frames = SubResource("SpriteFrames_2dhmu")
 autoplay = "default"
-frame_progress = 0.3357199
+frame_progress = 0.8039183
 
 [node name="ShadowCaster" type="CSGSphere3D" parent="EnemySpriteHandle"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.138763, 0.0946793)
