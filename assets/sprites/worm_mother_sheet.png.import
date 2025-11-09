@@ -3,20 +3,19 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://rncnvdgdmsll"
-path.s3tc="res://.godot/imported/worm_mother_sheet.png-7b38b7f26d77d70245b71681c4502f64.s3tc.ctex"
+path="res://.godot/imported/worm_mother_sheet.png-7b38b7f26d77d70245b71681c4502f64.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
 source_file="res://assets/sprites/worm_mother_sheet.png"
-dest_files=["res://.godot/imported/worm_mother_sheet.png-7b38b7f26d77d70245b71681c4502f64.s3tc.ctex"]
+dest_files=["res://.godot/imported/worm_mother_sheet.png-7b38b7f26d77d70245b71681c4502f64.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=0
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0
