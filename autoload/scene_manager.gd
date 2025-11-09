@@ -13,7 +13,7 @@ var ingame_ui: IngameUI
 
 var _paused = false
 
-signal scene_changed(new_scene: SceneBase)
+signal OnSceneChanged(new_scene: SceneBase)
 
 var shader_material :ShaderMaterial
 
@@ -70,7 +70,7 @@ func _on_viewport_size_changed() -> void:
 func _on_ready_timeout():
 	viewport_container.set_visible(true)
 	get_tree().get_root().move_child(viewport_container, 0)
-	scene_changed.emit(current_scene)
+	OnSceneChanged.emit(current_scene)
 	if current_scene is SceneBase:
 		ingame_ui.visible = current_scene.show_ingame_ui
 
@@ -78,7 +78,7 @@ func _on_ready_timeout():
 func set_current_scene(in_scene: SceneBase) -> void:
 	current_scene = in_scene
 	current_scene.call_deferred("reparent", viewport, true)
-	scene_changed.emit(current_scene)
+	OnSceneChanged.emit(current_scene)
 	if current_scene is SceneBase:
 		ingame_ui.visible = current_scene.show_ingame_ui
 
@@ -118,7 +118,6 @@ func load_scene(scene_type: SceneMapping.SceneType) -> void:
 
 func handle_input_pause() -> void:
 	toggle_pause_game()
-	print_debug('FlowController: handle_pause_input')
 
 
 func pause_game(pause: bool):

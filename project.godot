@@ -21,6 +21,7 @@ config/icon="res://icon.svg"
 SceneManagerAutoload="*res://autoload/scene_manager.gd"
 PlayerStateAutoload="*res://autoload/player_state.gd"
 PlayerControllerAutoload="*res://autoload/player_controller.gd"
+AmbientSoundControllerAutoload="*res://autoload/ambient_sound_controller.gd"
 
 [display]
 

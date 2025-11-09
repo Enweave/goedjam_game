@@ -31,9 +31,18 @@ func get_number_to_spawn(_wave_number: int) -> int:
 	return calculated_number
 
 func _on_spawn_timer_timeout() -> void:
-	if spawned_characters.size() == 0:
+	# check if there are any enabled spawners
+	var any_enabled_spawners: bool = false
+	for spawner in spawners:
+		if spawner.enabled:
+			any_enabled_spawners = true
+			break
+
+	if spawned_characters.size() == 0 and any_enabled_spawners:
 		PlayerStateAutoload.increase_wave()
 		for spawner in spawners:
+			if spawner.enabled == false:
+				continue
 			for i in get_number_to_spawn(PlayerStateAutoload.current_wave):
 				var _instance: CharacterWithHealth
 				_instance = await spawner.spawn_enemy(PlayerStateAutoload.current_wave)
@@ -41,8 +50,6 @@ func _on_spawn_timer_timeout() -> void:
 				_instance.OnCharacterDied.connect(_on_spawned_character_death)
 		PlayerStateAutoload.notify_wave_started()
 		PlayerStateAutoload.current_player_character.health_component.heal(5.)
-
-
 	else:
 		print_debug("Wave cannot start yet, [%d] still alive. " % spawned_characters.size())
 

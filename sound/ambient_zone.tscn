@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://cp7aiid84spqr"]
+
+[ext_resource type="Script" uid="uid://bxv8damtqf4it" path="res://sound/ambient_zone.gd" id="1_n0w2w"]
+
+[node name="AmbientZone" type="Area3D"]
+collision_layer = 0
+script = ExtResource("1_n0w2w")

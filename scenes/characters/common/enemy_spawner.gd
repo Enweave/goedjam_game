@@ -4,7 +4,7 @@ extends Node3D
 class_name EnemySpawner
 
 @export var enemy_scenes: Array[PackedScene] = []
-
+@export var enabled: bool = true
 
 func spawn_enemy(_wave_number: int) -> CharacterWithHealth:
 	if enemy_scenes.size() == 0:

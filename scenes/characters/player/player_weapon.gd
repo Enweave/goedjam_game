@@ -49,7 +49,6 @@ func _ready() -> void:
 
 
 func _on_controlled_character_died() -> void:
-	print_debug("PlayerWeapon: Controlled character died, disconnecting signals.")
 	player_controller.OnFeatureActivated.disconnect(fire)
 	player_controller.OnFeatureDeactivated.disconnect(deactivate)
 	player_controller.OnReloadRequested.disconnect(reload)
