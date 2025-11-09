@@ -49,19 +49,19 @@ region = Rect2(448, 64, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0t1cb"]
 atlas = ExtResource("6_hkjxk")
-region = Rect2(0, 0, 64, 64)
+region = Rect2(192, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_v2bag"]
 atlas = ExtResource("6_hkjxk")
-region = Rect2(64, 0, 64, 64)
+region = Rect2(256, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8jkju"]
 atlas = ExtResource("6_hkjxk")
-region = Rect2(128, 0, 64, 64)
+region = Rect2(320, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_pe1ep"]
 atlas = ExtResource("6_hkjxk")
-region = Rect2(192, 0, 64, 64)
+region = Rect2(384, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5reh8"]
 atlas = ExtResource("6_hkjxk")
@@ -350,10 +350,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.114521, 0)
 billboard = 1
 texture_filter = 0
 sprite_frames = SubResource("SpriteFrames_2dhmu")
-animation = &"hatching"
 autoplay = "default"
-frame = 25
-frame_progress = 1.0
+frame_progress = 0.42501393
 
 [node name="ShadowCaster" type="CSGSphere3D" parent="EnemySpriteHandle"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.138763, 0.0946793)
