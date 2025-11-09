@@ -526,6 +526,7 @@ directory = "res://sound/sfx/shotgun-fire"
 volume_db = 10.0
 unit_size = 20.0
 max_db = 0.0
+max_concurrent = null
 metadata/_custom_type_script = "uid://dy20qfo6q146"
 
 [node name="CameraRoot" type="Node3D" parent="."]

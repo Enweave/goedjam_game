@@ -28,8 +28,7 @@ var last_played_index: int = -1
 
 
 func _ready():
-	_create_new_player()
-	audio_stream_player.max_polyphony = 4
+	_create_player_pool()
 
 
 func play_random_sound():
@@ -37,6 +36,7 @@ func play_random_sound():
 		var random_index: int = randi() % files.size()
 		if random_index == last_played_index:
 			random_index = (random_index + 1) % files.size()
+		var audio_stream_player: Variant = _retrieve_free_player()
 		audio_stream_player.stream = load(files[random_index])
 		audio_stream_player.play()
 		last_played_index = random_index

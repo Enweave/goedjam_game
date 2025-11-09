@@ -26,9 +26,17 @@ enum TypeOfPlayer {
 ## Sets the absolute maximum of the sound level, in decibels at initialization.
 @export var max_db: float = -2
 
-var audio_stream_player
+## Maximum number of concurrent sounds that can be played by this player.
+@export var max_concurrent: int = 3
 
-func _create_new_player():
+
+var _player_pool: Array[Variant] = []
+var _playback_indexes: Array[int] = []
+var _pool_ready: bool = false
+
+
+func _create_player() -> void:
+	var audio_stream_player: Variant
 	if type_of_player == TypeOfPlayer.AUDIO_STREAM_PLAYER_2D:
 		audio_stream_player = AudioStreamPlayer2D.new()
 #		audio_stream_player.attenuation_filter_cutoff_hz = 20500
@@ -45,10 +53,43 @@ func _create_new_player():
 	audio_stream_player.autoplay = false
 	audio_stream_player.bus = bus_name
 	audio_stream_player.volume_db = volume_db
+	call_deferred("_attach_player", audio_stream_player)
+	_player_pool.append(audio_stream_player)
 
-	call_deferred("attach_player")
+
+func _create_player_pool() -> void:
+	if _pool_ready:
+		return
+	_pool_ready = true
+	for i in range(max_concurrent):
+		_create_player()
 
 
-func attach_player() -> void:
-	self.get_parent().add_child(audio_stream_player)
-	audio_stream_player.global_transform = self.get_parent().global_transform
+func _update_playback_indexes(in_index: int) -> void:
+	_playback_indexes.append(in_index)
+	if _playback_indexes.size() > max_concurrent:
+		_playback_indexes.pop_front()
+
+
+
+
+func _retrieve_free_player() -> Variant:
+	## Returns a free audio stream player from the pool.
+	## If all players are busy, returns the oldest one.
+	## Updates playback indexes accordingly.
+
+	for i in range(_player_pool.size()):
+		if !_player_pool[i].playing:
+			_update_playback_indexes(i)
+			return _player_pool[i]
+
+	var oldest_index: int = _playback_indexes[0]
+	return _player_pool[oldest_index]
+
+
+func _attach_player(in_player: Node) -> void:
+	if type_of_player == TypeOfPlayer.AUDIO_STREAM_PLAYER_2D or type_of_player == TypeOfPlayer.AUDIO_STREAM_PLAYER_3D:
+		self.get_parent().add_child(in_player)
+		in_player.global_transform = self.get_parent().global_transform
+	else:
+		add_child(in_player)
