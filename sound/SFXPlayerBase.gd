@@ -1,4 +1,4 @@
-extends Node2D
+extends Node
 
 class_name SFXPlayerBase
 
@@ -26,9 +26,6 @@ enum TypeOfPlayer {
 ## Sets the absolute maximum of the sound level, in decibels at initialization.
 @export var max_db: float = -2
 
-## Whether the sound should be played in a loop.
-@export var play_looped: bool = false
-
 var audio_stream_player
 
 func _create_new_player():
@@ -49,5 +46,9 @@ func _create_new_player():
 	audio_stream_player.bus = bus_name
 	audio_stream_player.volume_db = volume_db
 
-	add_child(audio_stream_player)
-	
+	call_deferred("attach_player")
+
+
+func attach_player() -> void:
+	self.get_parent().add_child(audio_stream_player)
+	audio_stream_player.global_transform = self.get_parent().global_transform
