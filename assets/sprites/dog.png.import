@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b05ku1nmxt8jr"
-path="res://.godot/imported/molotov.png-4288ee614390c335b93caf1abd64baf9.ctex"
+uid="uid://dhqn74s2suyhi"
+path="res://.godot/imported/dog.png-980f3ee55972ca94cd6e484d7a9b5ecc.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/molotov.png"
-dest_files=["res://.godot/imported/molotov.png-4288ee614390c335b93caf1abd64baf9.ctex"]
+source_file="res://assets/sprites/dog.png"
+dest_files=["res://.godot/imported/dog.png-980f3ee55972ca94cd6e484d7a9b5ecc.ctex"]
 
 [params]
 
