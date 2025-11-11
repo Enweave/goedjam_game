@@ -1,4 +1,4 @@
-[gd_scene load_steps=50 format=3 uid="uid://d1ovxarhjxn4q"]
+[gd_scene load_steps=51 format=3 uid="uid://d1ovxarhjxn4q"]
 
 [ext_resource type="Script" uid="uid://q0xpdnen5hge" path="res://scenes/characters/common/enemy_base.gd" id="1_hkjxk"]
 [ext_resource type="PackedScene" uid="uid://dudqxy6dbjysm" path="res://scenes/characters/common/character_collision_shape_3d.tscn" id="2_e55e8"]
@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://ccbrqaw7h8342" path="res://scenes/characters/common/melee_weapon.tscn" id="4_e55e8"]
 [ext_resource type="Script" uid="uid://htts4jxy8uka" path="res://scenes/characters/common/enemy_sprite_handle.gd" id="5_ce5of"]
 [ext_resource type="Script" uid="uid://cldh7nhnubd00" path="res://scenes/characters/common/melee_ai_controller.gd" id="5_e55e8"]
-[ext_resource type="Texture2D" uid="uid://yr1e7t2sypbq" path="res://assets/sprites/enemy/enemy_worm.png" id="6_hkjxk"]
+[ext_resource type="Texture2D" uid="uid://bowbb1blhmtyv" path="res://assets/sprites/enemy/enemy_worm.png" id="6_hkjxk"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_qyrn1"]
 
@@ -17,35 +17,39 @@ albedo_color = Color(1, 0.196078, 0, 1)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_e55e8"]
 atlas = ExtResource("6_hkjxk")
-region = Rect2(0, 64, 64, 64)
+region = Rect2(512, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_kruco"]
 atlas = ExtResource("6_hkjxk")
-region = Rect2(64, 64, 64, 64)
+region = Rect2(576, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1bqbp"]
 atlas = ExtResource("6_hkjxk")
-region = Rect2(128, 64, 64, 64)
+region = Rect2(640, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ce5of"]
 atlas = ExtResource("6_hkjxk")
-region = Rect2(192, 64, 64, 64)
+region = Rect2(704, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_sm1qu"]
 atlas = ExtResource("6_hkjxk")
-region = Rect2(256, 64, 64, 64)
+region = Rect2(768, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xpb21"]
 atlas = ExtResource("6_hkjxk")
-region = Rect2(320, 64, 64, 64)
+region = Rect2(832, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hv4vo"]
 atlas = ExtResource("6_hkjxk")
-region = Rect2(384, 64, 64, 64)
+region = Rect2(896, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_mxiuq"]
 atlas = ExtResource("6_hkjxk")
-region = Rect2(448, 64, 64, 64)
+region = Rect2(960, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k0aqc"]
+atlas = ExtResource("6_hkjxk")
+region = Rect2(1024, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0t1cb"]
 atlas = ExtResource("6_hkjxk")
@@ -193,6 +197,9 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_mxiuq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k0aqc")
 }],
 "loop": false,
 "name": &"death",
@@ -350,8 +357,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.114521, 0)
 billboard = 1
 texture_filter = 0
 sprite_frames = SubResource("SpriteFrames_2dhmu")
+animation = &"death"
 autoplay = "default"
-frame_progress = 0.42501393
+frame = 8
+frame_progress = 1.0
 
 [node name="ShadowCaster" type="CSGSphere3D" parent="EnemySpriteHandle"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.138763, 0.0946793)

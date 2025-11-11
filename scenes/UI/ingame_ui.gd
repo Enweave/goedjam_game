@@ -81,8 +81,8 @@ func _update_magazine_size(in_size: int) -> void:
 
 
 func update_weapon_display(in_weapon: PlayerWeapon) -> void:
-	var bullet_count: int = in_weapon.current_ammo
-	var max_bullet_count: int = in_weapon.magazine_size
+	var bullet_count: int = floori(in_weapon._current_energy)
+	var max_bullet_count: int = floori(in_weapon._energy_max)
 
 	_update_magazine_size(max_bullet_count)
 

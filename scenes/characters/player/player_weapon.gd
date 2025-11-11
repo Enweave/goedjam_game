@@ -3,18 +3,12 @@
 
 class_name PlayerWeapon
 
+@export_group("Shotgun parameters")
 @export var player_weapon_sprite_handle: PlayerWeaponSpriteHandle = null
-@export var magazine_size: int = 6
-@export var no_ammo_sfx_player: RandomSFXPlayer = null
-@export var reload_sfx_player: RandomSFXPlayer = null
 @export var number_of_projectiles_per_shot: int = 2
 @export var spread_angle_degrees: float = 2.0
 @export var weapon_range: float = 300.0
 
-var current_ammo: int = magazine_size
-var reload_time: float = 1.0
-var _is_reloading: bool = true
-var _reload_timer: Timer
 
 var player_controller: PlayerController = null
 
@@ -29,41 +23,37 @@ func _ready() -> void:
 	super._ready()
 	TracerScene = preload("res://scenes/visuals/tracer.tscn")
 	player_controller = PlayerControllerAutoload
-	_reload_timer = Timer.new()
-	_reload_timer.wait_time = reload_time
-	_reload_timer.one_shot = true
-	_reload_timer.timeout.connect(_on_reload_timer_timeout)
-	await call_deferred("add_child", _reload_timer)
-	_is_reloading = false
 
-	player_controller.OnFeatureActivated.connect(fire)
+
+	player_controller.OnFeatureActivated.connect(activate)
 	player_controller.OnFeatureDeactivated.connect(deactivate)
+	player_controller.OnReloadRequested.connect(reload)
+	player_controller.OnControlledCharacterDied.connect(_on_controlled_character_died)
 
-	self.OnCooldownPassed.connect(_on_cooldown_passed)
+
+
 	self.OnActivation.connect(_on_activation)
+	self.OnReloadStarted.connect(func() -> void:
+		PlayerStateAutoload.notify_from_weapon(self)
+		player_weapon_sprite_handle.reload()
+	)
+	self.OnReloadCompleted.connect(func() -> void:
+		PlayerStateAutoload.notify_from_weapon(self)
+		player_weapon_sprite_handle.idle()
+	)
 
 	PlayerStateAutoload.notify_from_weapon(self)
 
-	player_controller.OnControlledCharacterDied.connect(_on_controlled_character_died)
-	player_controller.OnReloadRequested.connect(reload)
-
 
 func _on_controlled_character_died() -> void:
-	player_controller.OnFeatureActivated.disconnect(fire)
+	player_controller.OnFeatureActivated.disconnect(activate)
 	player_controller.OnFeatureDeactivated.disconnect(deactivate)
 	player_controller.OnReloadRequested.disconnect(reload)
 
 
-func _on_cooldown_passed():
-	if current_ammo <= 0:
-		reload()
-
 func _on_activation():
-	current_ammo -= 1
 	_fire()
 	player_weapon_sprite_handle.fire()
-
-
 
 func get_free_tracer_from_pool() -> Tracer:
 	for tracer in tracer_pool:
@@ -126,50 +116,3 @@ func _fire() -> void:
 			var body = hit.get("collider")
 			WeaponBase.damage_character(body, damage)
 
-
-
-func fire() -> void:
-	if _is_reloading:
-		return
-
-	if current_ammo <= 0:
-		if no_ammo_sfx_player != null:
-			no_ammo_sfx_player.play_random_sfx()
-		reload()
-
-		return
-	activate()
-
-
-func set_number_of_projectiles_per_shot(count: int) -> void:
-	number_of_projectiles_per_shot = count
-
-
-func set_magazine_size(size: int) -> void:
-	magazine_size = size
-	if current_ammo > magazine_size:
-		current_ammo = magazine_size
-
-
-func reload() -> void:
-	if _is_reloading:
-		return
-
-	if current_ammo == magazine_size:
-		return
-
-	lock()
-	PlayerStateAutoload.notify_from_weapon(self)
-	if reload_sfx_player != null:
-		reload_sfx_player.play_random_sfx()
-	player_weapon_sprite_handle.reload()
-	_is_reloading = true
-	_reload_timer.start()
-
-
-func _on_reload_timer_timeout() -> void:
-	current_ammo = magazine_size
-	_is_reloading = false
-	unlock()
-	PlayerStateAutoload.notify_from_weapon(self)
-	player_weapon_sprite_handle.idle()

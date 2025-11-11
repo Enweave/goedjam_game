@@ -7,8 +7,8 @@
 [ext_resource type="Script" uid="uid://k7y7m3lyep1h" path="res://scenes/characters/player/player_weapon.gd" id="3_djydg"]
 [ext_resource type="Script" uid="uid://dy20qfo6q146" path="res://sound/RandomSFXPlayer.gd" id="4_3xnwo"]
 [ext_resource type="Script" uid="uid://bj3nikt4pi5k4" path="res://scenes/characters/player/player_sprite_handle.gd" id="7_xuses"]
-[ext_resource type="Texture2D" uid="uid://crvj1xykr2htu" path="res://assets/sprites/player_sheet.png" id="8_xuses"]
-[ext_resource type="Texture2D" uid="uid://dby35jovote8y" path="res://assets/sprites/shotgun_sheet.png" id="9_42irl"]
+[ext_resource type="Texture2D" uid="uid://boivxnmr1tn0k" path="res://assets/sprites/player_sheet.png" id="8_xuses"]
+[ext_resource type="Texture2D" uid="uid://dsdjvu15qyb3f" path="res://assets/sprites/shotgun_sheet.png" id="9_42irl"]
 [ext_resource type="Script" uid="uid://ddwol0dhk56bx" path="res://scenes/characters/player/player_weapon_sprite_handle.gd" id="10_djydg"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_42irl"]
@@ -507,16 +507,20 @@ metadata/_custom_type_script = "uid://cky7a4jh04rat"
 [node name="BodyRoot" type="Node3D" parent="."]
 unique_name_in_owner = true
 
-[node name="PlayerWeapon" type="Node3D" parent="BodyRoot" node_paths=PackedStringArray("player_weapon_sprite_handle", "sfx_player")]
+[node name="PlayerWeapon" type="Node3D" parent="BodyRoot" node_paths=PackedStringArray("player_weapon_sprite_handle", "sfx_player", "no_ammo_sfx_player", "reload_sfx_player")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.428589)
 script = ExtResource("3_djydg")
 player_weapon_sprite_handle = NodePath("../../WeaponSpriteHandle")
 number_of_projectiles_per_shot = 6
 spread_angle_degrees = 6.0
 windup_time = 0.0
-cooldown_time = 0.2
 full_auto = true
+activation_cost = 1.0
+energy_max = 6.0
+reload_time = 0.4
 sfx_player = NodePath("FireSFXPlayer")
+no_ammo_sfx_player = NodePath("DryFireSFXPlayer")
+reload_sfx_player = NodePath("ReloadSFXPlayer")
 metadata/_custom_type_script = "uid://k7y7m3lyep1h"
 
 [node name="FireSFXPlayer" type="Node" parent="BodyRoot/PlayerWeapon"]
@@ -527,6 +531,20 @@ volume_db = 10.0
 unit_size = 20.0
 max_db = 0.0
 max_concurrent = 4
+metadata/_custom_type_script = "uid://dy20qfo6q146"
+
+[node name="DryFireSFXPlayer" type="Node" parent="BodyRoot/PlayerWeapon"]
+script = ExtResource("4_3xnwo")
+files = Array[String](["res://sound/sfx/shotgun-dry-fire/shotgun-dry-fire-1.mp3", "res://sound/sfx/shotgun-dry-fire/shotgun-dry-fire-2.mp3", "res://sound/sfx/shotgun-dry-fire/shotgun-dry-fire-3.mp3"])
+directory = "res://sound/sfx/shotgun-dry-fire"
+volume_db = 2.0
+max_db = 2.0
+metadata/_custom_type_script = "uid://dy20qfo6q146"
+
+[node name="ReloadSFXPlayer" type="Node" parent="BodyRoot/PlayerWeapon"]
+script = ExtResource("4_3xnwo")
+files = Array[String](["res://sound/sfx/shotgun-reload/shotgun-reload-1.mp3", "res://sound/sfx/shotgun-reload/shotgun-reload-2.mp3", "res://sound/sfx/shotgun-reload/shotgun-reload-3.mp3", "res://sound/sfx/shotgun-reload/shotgun-reload-4.mp3"])
+directory = "res://sound/sfx/shotgun-reload"
 metadata/_custom_type_script = "uid://dy20qfo6q146"
 
 [node name="CameraRoot" type="Node3D" parent="."]
