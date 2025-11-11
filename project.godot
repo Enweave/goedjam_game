@@ -38,6 +38,18 @@ EnemySpawners=""
 theme/custom="uid://b38jgwqg4syy5"
 theme/custom_font="uid://ye576p34uutu"
 
+[importer_defaults]
+
+3d_texture={
+&"compress/mode": 0
+}
+2d_array_texture={
+&"compress/mode": 0
+}
+texture={
+&"detect_3d/compress_to": 0
+}
+
 [input]
 
 input_Pause={
