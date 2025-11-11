@@ -2,23 +2,24 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dpgdqdr8635fq"
-path.s3tc="res://.godot/imported/enemy_orb_sheet.png-518073bfefa7e9547f9c5f7fb5d85ece.s3tc.ctex"
+uid="uid://sd2v12ldrdcn"
+path="res://.godot/imported/enemy_tank01_sheet.png-72a19378826b7882f87e3d2e1a0eb10f.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/enemy_orb_sheet.png"
-dest_files=["res://.godot/imported/enemy_orb_sheet.png-518073bfefa7e9547f9c5f7fb5d85ece.s3tc.ctex"]
+source_file="res://assets/sprites/enemy/enemy_tank01_sheet.png"
+dest_files=["res://.godot/imported/enemy_tank01_sheet.png-72a19378826b7882f87e3d2e1a0eb10f.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=0
 compress/high_quality=false
 compress/lossy_quality=0.7
+compress/uastc_level=0
+compress/rdo_quality_loss=0.0
 compress/hdr_compression=1
 compress/normal_map=0
 compress/channel_pack=0
@@ -26,6 +27,10 @@ mipmaps/generate=true
 mipmaps/limit=-1
 roughness/mode=0
 roughness/src_normal=""
+process/channel_remap/red=0
+process/channel_remap/green=1
+process/channel_remap/blue=2
+process/channel_remap/alpha=3
 process/fix_alpha_border=true
 process/premult_alpha=false
 process/normal_map_invert_y=false

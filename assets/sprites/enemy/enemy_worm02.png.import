@@ -2,21 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cbh57wp12k3w6"
-path.s3tc="res://.godot/imported/enemy_fly_sheet.png-4da43b075c9439cc179323e2e9202947.s3tc.ctex"
+uid="uid://dj2a7ovh05a5s"
+path="res://.godot/imported/enemy_worm02.png-2d94746edba36ab761d5b1dddb4d68e8.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/enemy_fly_sheet.png"
-dest_files=["res://.godot/imported/enemy_fly_sheet.png-4da43b075c9439cc179323e2e9202947.s3tc.ctex"]
+source_file="res://assets/sprites/enemy/enemy_worm02.png"
+dest_files=["res://.godot/imported/enemy_worm02.png-2d94746edba36ab761d5b1dddb4d68e8.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=0
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0

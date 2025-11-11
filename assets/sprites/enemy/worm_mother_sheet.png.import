@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://o0yceekhvbaj"
-path="res://.godot/imported/enemy_worm03.png-76d99e7b0bf505eb32032f3d3243160f.ctex"
+uid="uid://rncnvdgdmsll"
+path="res://.godot/imported/worm_mother_sheet.png-33b118c177178a84cc65476e03308c1f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/enemy_worm03.png"
-dest_files=["res://.godot/imported/enemy_worm03.png-76d99e7b0bf505eb32032f3d3243160f.ctex"]
+source_file="res://assets/sprites/enemy/worm_mother_sheet.png"
+dest_files=["res://.godot/imported/worm_mother_sheet.png-33b118c177178a84cc65476e03308c1f.ctex"]
 
 [params]
 

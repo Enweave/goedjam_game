@@ -1,0 +1,203 @@
+[gd_scene load_steps=26 format=3 uid="uid://dr84pct65lrij"]
+
+[ext_resource type="Script" uid="uid://q0xpdnen5hge" path="res://scenes/characters/common/enemy_base.gd" id="1_38tl3"]
+[ext_resource type="PackedScene" uid="uid://dudqxy6dbjysm" path="res://scenes/characters/common/character_collision_shape_3d.tscn" id="2_mqtg4"]
+[ext_resource type="Script" uid="uid://xjyowidksewx" path="res://core/combat/health_component.gd" id="3_r5uig"]
+[ext_resource type="Script" uid="uid://cldh7nhnubd00" path="res://scenes/characters/common/melee_ai_controller.gd" id="4_qerpg"]
+[ext_resource type="PackedScene" uid="uid://ccbrqaw7h8342" path="res://scenes/characters/common/melee_weapon.tscn" id="5_7bhkc"]
+[ext_resource type="Script" uid="uid://htts4jxy8uka" path="res://scenes/characters/common/enemy_sprite_handle.gd" id="6_bpiyx"]
+[ext_resource type="Texture2D" uid="uid://sd2v12ldrdcn" path="res://assets/sprites/enemy/enemy_tank01_sheet.png" id="7_38tl3"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_qyrn1"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qyrn1"]
+albedo_color = Color(1, 0.196078, 0, 1)
+
+[sub_resource type="PrismMesh" id="PrismMesh_uo6so"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_38tl3"]
+atlas = ExtResource("7_38tl3")
+region = Rect2(0, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jur68"]
+atlas = ExtResource("7_38tl3")
+region = Rect2(128, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_saxbv"]
+atlas = ExtResource("7_38tl3")
+region = Rect2(64, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mqtg4"]
+atlas = ExtResource("7_38tl3")
+region = Rect2(0, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r5uig"]
+atlas = ExtResource("7_38tl3")
+region = Rect2(64, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qerpg"]
+atlas = ExtResource("7_38tl3")
+region = Rect2(128, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7bhkc"]
+atlas = ExtResource("7_38tl3")
+region = Rect2(192, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bpiyx"]
+atlas = ExtResource("7_38tl3")
+region = Rect2(256, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5tjw4"]
+atlas = ExtResource("7_38tl3")
+region = Rect2(320, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hbxcj"]
+atlas = ExtResource("7_38tl3")
+region = Rect2(384, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hatmw"]
+atlas = ExtResource("7_38tl3")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8rkya"]
+atlas = ExtResource("7_38tl3")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_epsi1"]
+atlas = ExtResource("7_38tl3")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a060f"]
+atlas = ExtResource("7_38tl3")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_2dhmu"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_38tl3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jur68")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_saxbv")
+}],
+"loop": true,
+"name": &"attack",
+"speed": 11.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mqtg4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r5uig")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qerpg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7bhkc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bpiyx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5tjw4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hbxcj")
+}],
+"loop": false,
+"name": &"death",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hatmw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8rkya")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_epsi1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a060f")
+}],
+"loop": true,
+"name": &"default",
+"speed": 9.0
+}]
+
+[node name="EnemyBase" type="CharacterBody3D" node_paths=PackedStringArray("health_component")]
+script = ExtResource("1_38tl3")
+health_component = NodePath("HealthComponent")
+BASE_MOVEMENT_SPEED = 5.0
+metadata/_custom_type_script = "uid://d38vogc71un30"
+
+[node name="CollisionShape3D" parent="." instance=ExtResource("2_mqtg4")]
+
+[node name="HealthComponent" type="Node" parent="."]
+script = ExtResource("3_r5uig")
+BASE_HEALTH = 3.0
+BASE_HEALTH_REGEN_RATE = 0.0
+metadata/_custom_type_script = "uid://xjyowidksewx"
+
+[node name="AIController" type="Node3D" parent="." node_paths=PackedStringArray("weapon", "nav_agent", "sprite_hanlde")]
+script = ExtResource("4_qerpg")
+weapon = NodePath("../BodyRoot/MeleeWeapon")
+nav_agent = NodePath("../NavigationAgent3D")
+sprite_hanlde = NodePath("../EnemySpriteHandle")
+metadata/_custom_type_script = "uid://s7b4gwpsxxwk"
+
+[node name="BodyRoot" type="Node3D" parent="."]
+unique_name_in_owner = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="BodyRoot"]
+visible = false
+mesh = SubResource("CapsuleMesh_qyrn1")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_qyrn1")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="BodyRoot/MeshInstance3D"]
+transform = Transform3D(-0.625961, 8.74228e-08, -1.84277e-15, 0, -4.37114e-08, -0.482226, -5.47233e-08, -1, 2.10788e-08, 0, 0.788606, -0.260014)
+visible = false
+mesh = SubResource("PrismMesh_uo6so")
+
+[node name="MeleeWeapon" parent="BodyRoot" instance=ExtResource("5_7bhkc")]
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+avoidance_enabled = true
+radius = 1.0
+use_3d_avoidance = true
+
+[node name="EnemySpriteHandle" type="Node3D" parent="."]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0)
+script = ExtResource("6_bpiyx")
+
+[node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="EnemySpriteHandle"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.114521, 0)
+billboard = 1
+texture_filter = 0
+sprite_frames = SubResource("SpriteFrames_2dhmu")
+animation = &"attack"
+autoplay = "default"
+frame_progress = 0.33642182
+
+[node name="ShadowCaster" type="CSGSphere3D" parent="EnemySpriteHandle"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.138763, 0.0946793)
+cast_shadow = 3
+radius = 0.05
+radial_segments = 20
+rings = 8
+
+[node name="CPUParticles3D" type="CPUParticles3D" parent="."]
+amount = 17
+visibility_aabb = AABB(-10, 0, 0, 0, 0, 0)
+emission_shape = 1
+emission_sphere_radius = 1.0
+initial_velocity_min = 100.0
+initial_velocity_max = 381.44
+color = Color(0.8421967, 0.25177458, 0.1533655, 1)

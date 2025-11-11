@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://ccbrqaw7h8342" path="res://scenes/characters/common/melee_weapon.tscn" id="4_e55e8"]
 [ext_resource type="Script" uid="uid://htts4jxy8uka" path="res://scenes/characters/common/enemy_sprite_handle.gd" id="5_ce5of"]
 [ext_resource type="Script" uid="uid://cldh7nhnubd00" path="res://scenes/characters/common/melee_ai_controller.gd" id="5_e55e8"]
-[ext_resource type="Texture2D" uid="uid://yr1e7t2sypbq" path="res://assets/sprites/enemy_worm.png" id="6_hkjxk"]
+[ext_resource type="Texture2D" uid="uid://yr1e7t2sypbq" path="res://assets/sprites/enemy/enemy_worm.png" id="6_hkjxk"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_qyrn1"]
 

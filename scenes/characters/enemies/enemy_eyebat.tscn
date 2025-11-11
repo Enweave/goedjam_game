@@ -6,7 +6,7 @@
 [ext_resource type="Script" uid="uid://ukwpq1xnbjh8" path="res://scenes/characters/common/ranged_ai_controller.gd" id="4_q76en"]
 [ext_resource type="PackedScene" uid="uid://bdmkrc22xuas4" path="res://scenes/characters/common/ranged_weapon.tscn" id="4_w5gvj"]
 [ext_resource type="Script" uid="uid://htts4jxy8uka" path="res://scenes/characters/common/enemy_sprite_handle.gd" id="5_bwqbr"]
-[ext_resource type="Texture2D" uid="uid://bpj743acr0o1a" path="res://assets/sprites/eyebat.png" id="6_6rl7b"]
+[ext_resource type="Texture2D" uid="uid://bpj743acr0o1a" path="res://assets/sprites/enemy/eyebat.png" id="6_6rl7b"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_qyrn1"]
 
