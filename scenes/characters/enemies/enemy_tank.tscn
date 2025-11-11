@@ -192,12 +192,3 @@ cast_shadow = 3
 radius = 0.05
 radial_segments = 20
 rings = 8
-
-[node name="CPUParticles3D" type="CPUParticles3D" parent="."]
-amount = 17
-visibility_aabb = AABB(-10, 0, 0, 0, 0, 0)
-emission_shape = 1
-emission_sphere_radius = 1.0
-initial_velocity_min = 100.0
-initial_velocity_max = 381.44
-color = Color(0.8421967, 0.25177458, 0.1533655, 1)
