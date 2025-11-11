@@ -2,24 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://3hoxlfomuv8p"
-path.s3tc="res://.godot/imported/wall_1.png-1734a539028751f62dcaae83ecb8acd7.s3tc.ctex"
+uid="uid://ba4c2tpjhy1yi"
+path="res://.godot/imported/wall_1.png-1734a539028751f62dcaae83ecb8acd7.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
-"vram_texture": true
-}
-generator_parameters={
-"md5": "c7380dd736cd08dabfc4d2a1f580d580"
+"vram_texture": false
 }
 
 [deps]
 
 source_file="res://assets/tileset/wall_1.png"
-dest_files=["res://.godot/imported/wall_1.png-1734a539028751f62dcaae83ecb8acd7.s3tc.ctex"]
+dest_files=["res://.godot/imported/wall_1.png-1734a539028751f62dcaae83ecb8acd7.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=0
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0
@@ -27,7 +23,7 @@ compress/rdo_quality_loss=0.0
 compress/hdr_compression=1
 compress/normal_map=0
 compress/channel_pack=0
-mipmaps/generate=true
+mipmaps/generate=false
 mipmaps/limit=-1
 roughness/mode=0
 roughness/src_normal=""

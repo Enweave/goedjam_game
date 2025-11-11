@@ -2,7 +2,7 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://rvr15uu1vffr"
+uid="uid://jillxnxe8e8s"
 path="res://.godot/imported/dog_sprites.png-e6d4f8949a827cb3d0b1a02962827b71.ctex"
 metadata={
 "vram_texture": false
@@ -37,4 +37,4 @@ process/normal_map_invert_y=false
 process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
-detect_3d/compress_to=1
+detect_3d/compress_to=0

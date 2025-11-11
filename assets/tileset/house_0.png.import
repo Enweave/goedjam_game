@@ -2,24 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cpcm07fbrljaw"
-path.s3tc="res://.godot/imported/house_0.png-dca843d1b94b97cc1ebf773263a0ed9a.s3tc.ctex"
+uid="uid://2vh6y0jqxf1u"
+path="res://.godot/imported/house_0.png-dca843d1b94b97cc1ebf773263a0ed9a.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
-"vram_texture": true
-}
-generator_parameters={
-"md5": "7cece957e54573e7ac3c555f84a9b868"
+"vram_texture": false
 }
 
 [deps]
 
 source_file="res://assets/tileset/house_0.png"
-dest_files=["res://.godot/imported/house_0.png-dca843d1b94b97cc1ebf773263a0ed9a.s3tc.ctex"]
+dest_files=["res://.godot/imported/house_0.png-dca843d1b94b97cc1ebf773263a0ed9a.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=0
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0
@@ -27,7 +23,7 @@ compress/rdo_quality_loss=0.0
 compress/hdr_compression=1
 compress/normal_map=0
 compress/channel_pack=0
-mipmaps/generate=true
+mipmaps/generate=false
 mipmaps/limit=-1
 roughness/mode=0
 roughness/src_normal=""

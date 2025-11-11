@@ -2,33 +2,35 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://02tp0jp2cbs4"
-path.s3tc="res://.godot/imported/painting_01_0.png-3d93d10ef4c66fdabcfba5365c1d0f5a.s3tc.ctex"
+uid="uid://c5fnfq6qg1e4f"
+path="res://.godot/imported/painting_01_0.png-3d93d10ef4c66fdabcfba5365c1d0f5a.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
-"vram_texture": true
-}
-generator_parameters={
-"md5": "6d1698cdbae1c86a6f43cc44e6bd2c00"
+"vram_texture": false
 }
 
 [deps]
 
 source_file="res://assets/tileset/houseobjects/paintings/painting_01_0.png"
-dest_files=["res://.godot/imported/painting_01_0.png-3d93d10ef4c66fdabcfba5365c1d0f5a.s3tc.ctex"]
+dest_files=["res://.godot/imported/painting_01_0.png-3d93d10ef4c66fdabcfba5365c1d0f5a.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=0
 compress/high_quality=false
 compress/lossy_quality=0.7
+compress/uastc_level=0
+compress/rdo_quality_loss=0.0
 compress/hdr_compression=1
 compress/normal_map=0
 compress/channel_pack=0
-mipmaps/generate=true
+mipmaps/generate=false
 mipmaps/limit=-1
 roughness/mode=0
 roughness/src_normal=""
+process/channel_remap/red=0
+process/channel_remap/green=1
+process/channel_remap/blue=2
+process/channel_remap/alpha=3
 process/fix_alpha_border=true
 process/premult_alpha=false
 process/normal_map_invert_y=false
