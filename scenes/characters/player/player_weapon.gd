@@ -42,6 +42,10 @@ func _ready() -> void:
 		player_weapon_sprite_handle.idle()
 	)
 
+	self.OnRegenerationTick.connect(func() -> void:
+		PlayerStateAutoload.notify_from_weapon(self)
+	)
+
 	PlayerStateAutoload.notify_from_weapon(self)
 
 

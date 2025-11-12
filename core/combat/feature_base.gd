@@ -53,6 +53,7 @@ signal OnWindupStarted
 signal OnActivation
 signal OnCooldownPassed
 signal OnReloadStarted
+signal OnRegenerationTick
 signal OnReloadCompleted
 
 var _target_object: Node3D     = null
@@ -144,7 +145,7 @@ func _set_up_reload():
 			_reload_timer.wait_time = _reload_time
 			_reload_timer.one_shot = true
 		ReloadType.REGENERATION:
-			_reload_amount = _energy_max / _reload_time / REGENERATION_TIMESTEP
+			_reload_amount = REGENERATION_TIMESTEP * _energy_max / _reload_time
 			_reload_timer.wait_time = REGENERATION_TIMESTEP
 			_reload_timer.one_shot = false
 
@@ -201,14 +202,21 @@ func _on_reload_timer_timeout() -> void:
 	_current_energy += _reload_amount
 	match _reload_type:
 		ReloadType.REGENERATION:
+			OnRegenerationTick.emit()
 			if _reload_amount > 0:
 				if _current_energy >= _energy_max:
 					_current_energy = _energy_max
 					_reload_timer.stop()
+					if reload_sfx_player != null:
+						reload_sfx_player.play_random_sound()
 					OnReloadCompleted.emit()
 		ReloadType.FULL_MAGAZINE:
 			if _current_energy > _energy_max:
 				_current_energy = _energy_max
+			if _feature_state == FeatureState.RELOADING:
+				_feature_state = FeatureState.READY
+			if reload_sfx_player != null:
+				reload_sfx_player.play_random_sound()
 			OnReloadCompleted.emit()
 			if _trigger_down and _auto_reactivate:
 				activate()
@@ -216,14 +224,16 @@ func _on_reload_timer_timeout() -> void:
 			if _feature_state == FeatureState.RELOADING:
 				_feature_state = FeatureState.READY
 			OnReloadCompleted.emit()
-
+			if reload_sfx_player != null:
+				reload_sfx_player.play_random_sound()
 			if _trigger_down:
 				activate()
 			else:
 				reload()
 
-	if reload_sfx_player != null:
-		reload_sfx_player.play_random_sound()
+
+
+
 
 
 func _has_enough_energy() -> bool:
