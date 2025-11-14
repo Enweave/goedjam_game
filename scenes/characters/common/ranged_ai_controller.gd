@@ -13,15 +13,14 @@ func _ready() -> void:
 		weapon.set_target_object(current_target_node)
 		weapon.instigator = self.get_parent()
 		weapon.OnTargetInRangeChanged.connect(_on_weapon_target_in_range_changed)
-#		weapon.OnActivation.connect(_on_weapon_activation)
 		weapon.OnCooldownPassed.connect(_on_weapon_target_in_range_changed)
 
 		OnControlledCharacterDied.connect(_on_controlled_character_died)
 
 
 func _on_controlled_character_died() -> void:
+	weapon.disable_feature()
 	weapon.OnTargetInRangeChanged.disconnect(_on_weapon_target_in_range_changed)
-#	weapon.OnActivation.disconnect(_on_weapon_activation)
 	weapon.OnCooldownPassed.disconnect(_on_weapon_target_in_range_changed)
 
 
@@ -35,7 +34,3 @@ func _on_weapon_target_in_range_changed() -> void:
 		chase_enabled = true
 		weapon.deactivate()
 
-
-#func _on_weapon_activation() -> void:
-#	if current_target_node and weapon.target_in_range:
-#		WeaponBase.damage_character(current_target_node, weapon.damage)

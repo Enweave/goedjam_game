@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://chgi8s5jhb48u" path="res://core/scene_management/scene_base.gd" id="1_f0qvk"]
 [ext_resource type="PackedScene" uid="uid://p6r7g7l6bfnd" path="res://scenes/characters/player/player.tscn" id="2_dvdjy"]
-[ext_resource type="Texture2D" uid="uid://bx5rm5utf27oq" path="res://assets/textures/black/texture_01.png" id="3_7yv8k"]
+[ext_resource type="Texture2D" uid="uid://djych6ci78tsx" path="res://assets/textures/black/texture_01.png" id="3_7yv8k"]
 [ext_resource type="PackedScene" uid="uid://b3yffow25eg1p" path="res://scenes/environments/default_environment.tscn" id="4_j2fik"]
 [ext_resource type="PackedScene" uid="uid://b72xb5njowo81" path="res://assets/tileset/house.gltf" id="5_efprs"]
 [ext_resource type="PackedScene" uid="uid://bfjunaagihehc" path="res://assets/tileset/houseobjects/lamp.gltf" id="6_e1au8"]
@@ -475,7 +475,6 @@ enemy_scenes = Array[PackedScene]([ExtResource("37_rn05h"), ExtResource("39_nyk2
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -82.8951, 3.64292, 1.29549)
 
 [node name="AmbientZoneIndoors" parent="." node_paths=PackedStringArray("collision_shape") instance=ExtResource("42_nyk2a")]
-collision_layer = 0
 stream = ExtResource("43_k4egv")
 collision_shape = NodePath("CollisionShape3D")
 
@@ -485,7 +484,6 @@ shape = SubResource("BoxShape3D_2jr0d")
 
 [node name="AmbientZoneOutdoors" parent="." node_paths=PackedStringArray("collision_shape") instance=ExtResource("42_nyk2a")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 81.620514)
-collision_layer = 0
 stream = ExtResource("44_k4egv")
 collision_shape = NodePath("CollisionShape3D")
 

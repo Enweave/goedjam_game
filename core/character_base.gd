@@ -79,7 +79,7 @@ func _physics_process_implementation(delta):
 		velocity.z = move_toward(velocity.z, 0, get_acceleration() * delta)
 
 
-func _aim_update_to_controller_target(delta):
+func _aim_update_to_controller_target(_delta):
 	var _hit_position: Vector3 = character_controller.current_target_position
 	_hit_position.y = body_root.global_position.y
 	var _direction: Vector3 = body_root.global_transform.origin.direction_to(_hit_position)
@@ -87,7 +87,7 @@ func _aim_update_to_controller_target(delta):
 	body_root.set_quaternion(_aim_direction_quaternion)
 
 
-func _aim_update_to_controller_aim_direction(delta):
+func _aim_update_to_controller_aim_direction(_delta):
 	if character_controller.aiming_direction == Vector2.ZERO:
 		return
 

@@ -23,4 +23,5 @@ func _on_death() -> void:
 	velocity = Vector3.ZERO
 
 	OnCharacterDied.emit(self)
+	character_controller.OnControlledCharacterDied.emit()
 	get_tree().create_timer(DEATH_TIMEOUT_SECONDS).timeout.connect(queue_free)

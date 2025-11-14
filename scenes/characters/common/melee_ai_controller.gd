@@ -18,6 +18,7 @@ func _ready() -> void:
 
 
 func _on_controlled_character_died() -> void:
+	weapon.disable_feature()
 	weapon.OnTargetInRangeChanged.disconnect(_on_weapon_target_in_range_changed)
 	weapon.OnActivation.disconnect(_on_weapon_activation)
 	weapon.OnCooldownPassed.disconnect(_on_weapon_target_in_range_changed)
